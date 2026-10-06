@@ -70,7 +70,9 @@ body.tv { overflow: hidden; cursor: none; padding: var(--safe-y) var(--safe-x);
 .tv .kicker { font-size: 1.5vh; letter-spacing: 0.44em; color: var(--dim); }
 .tv .headline { font-size: 11vh; font-weight: 200; letter-spacing: -0.04em; line-height: 1; }
 .tv .sub { font-size: 2.6vh; color: var(--dim); }
-.tv .hint { font-size: 1.8vh; color: #333a44; margin-top: 2vh; }
+.tv .hint { flex: 0 0 auto; text-align: center; font-size: 1.6vh;
+            letter-spacing: 0.3em; color: #39414c; padding: 1.8vh 0 0.4vh;
+            text-transform: uppercase; }
 
 .tv .restnum { font-size: 22vh; font-weight: 200; letter-spacing: -0.05em; line-height: 1; }
 .tv .restnum.go { color: var(--accent); }
@@ -78,13 +80,42 @@ body.tv { overflow: hidden; cursor: none; padding: var(--safe-y) var(--safe-x);
 .tv .plain li { font-size: 2.4vh; color: var(--dim); }
 .tv .plain b { color: var(--ink); font-weight: 400; margin-right: 0.5vw; }
 
-.tv .total { font-size: 17vh; font-weight: 200; letter-spacing: -0.05em; line-height: 1; }
-.tv .bars { width: 62vw; margin-top: 2vh; display: flex; flex-direction: column; gap: 1.1vh; }
-.tv .bar { position: relative; height: 3.4vh; display: flex; align-items: center; }
-.tv .bar span { display: block; height: 100%; background: var(--accent); opacity: 0.85; }
-.tv .bar i { font-style: normal; font-size: 1.9vh; color: var(--dim); margin-left: 1vw; }
-.tv .bar u { position: absolute; right: 0; text-decoration: none;
-             font-size: 1.6vh; color: #333a44; }
+.tv .total { font-size: 15vh; font-weight: 200; letter-spacing: -0.05em; line-height: 1; }
+
+/* progress across the very top: one segment per circuit */
+.tv .segs { display: flex; gap: 0.3vw; flex: 0 0 auto; margin-bottom: 1.8vh; }
+.tv .seg { flex: 1 1 0; height: 0.5vh; background: var(--line); border-radius: 1px; }
+.tv .seg.on { background: var(--accent); }
+.tv .seg.now { background: var(--accent); animation: segpulse 2.2s infinite ease-in-out; }
+@keyframes segpulse { 0%,100% { opacity: .35 } 50% { opacity: 1 } }
+
+.tv header.single { grid-template-columns: 1fr auto; align-items: end; }
+.tv header.single h1 { font-size: 7.6vh; font-weight: 200; letter-spacing: -0.035em; line-height: 1; }
+.tv header .kicker { margin-bottom: 1.2vh; }
+
+.tv .facts { display: flex; align-items: flex-end; gap: 3vw; }
+.tv .fact { text-align: right; }
+.tv .fact b { display: block; font-size: 5.2vh; font-weight: 200;
+              letter-spacing: -0.03em; line-height: 1; }
+.tv .fact span { display: block; font-size: 1.3vh; letter-spacing: 0.34em;
+                 color: var(--dim); margin-top: 0.9vh; }
+.tv .facts.row { justify-content: center; margin-top: 2.4vh; gap: 5vw; }
+.tv .facts.row .fact { text-align: center; }
+
+.tv .strip.faded .cell { opacity: 0.45; }
+
+.tv .rest .up { margin-top: 2.4vh; }
+.tv .plain { list-style: none; display: flex; gap: 3.2vw; margin-top: 1.4vh; }
+.tv .plain li { display: flex; flex-direction: column; align-items: center; gap: 0.6vh; }
+.tv .plain b { font-size: 4.4vh; font-weight: 200; letter-spacing: -0.02em; }
+.tv .plain b i { font-style: normal; font-size: 1.8vh; color: var(--dim); }
+.tv .plain span { font-size: 1.3vh; letter-spacing: 0.3em; color: var(--dim); text-transform: uppercase; }
+
+.tv .bars { width: 56vw; margin-top: 3vh; display: flex; flex-direction: column; gap: 1vh; }
+.tv .bar { display: flex; align-items: center; gap: 1vw; height: 2.8vh; }
+.tv .bar u { text-decoration: none; font-size: 1.4vh; color: var(--dim); width: 2vw; }
+.tv .bar span { height: 100%; background: var(--accent); opacity: 0.8; border-radius: 1px; }
+.tv .bar i { font-style: normal; font-size: 1.7vh; color: var(--dim); }
 
 /* ══ THE PHONE ═════════════════════════════════════════════════════════ */
 
