@@ -16,8 +16,9 @@ shows Tuesday.
 |---|---|
 | `docs/index.html` | The phone picker. Installs to the home screen as a PWA. |
 | `docs/tv.html` | The TV board. This is the URL the kiosk opens. |
-| `docs/program.js` | **Your program.** The only file you edit day to day. |
-| `docs/store.js` | The one shared value, Firestore `gymboard/tv`. |
+| `docs/routines.js` | **The routines.** A list you work down. See ROUTINE-FORMAT.md. |
+| `docs/exercise.js` | The drawn exercise animations. Red is the muscle working. |
+| `docs/store.js` | The session, Firestore `gymboard/session`. |
 | `docs/version.json` | The published version, which drives the update button. |
 | `firestore.rules` | The rules block to publish in the Firebase console. |
 | `pi/` | The Pi that drives the TV, and a `setup.sh` that builds one. |
@@ -35,7 +36,7 @@ deploys.
 
 ## Updating
 
-Edit `docs/program.js`, push, and the TV picks it up within five minutes on its
+Edit `docs/routines.js`, push, and the TV picks it up within five minutes on its
 own. On the phone, hit **Check for updates** in the footer, or just reopen it.
 
 Shipping a code change means bumping the version in five places. `ROADMAP.md`
