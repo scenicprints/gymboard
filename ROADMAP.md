@@ -71,14 +71,16 @@ Done:
 - The picker tags today's scheduled session, shows which one is live, and has a
   "Follow the week" reset.
 
+- **GitHub Pages is live** at `https://scenicprints.github.io/gymboard/`.
+- **Firestore rules are published** (2026-10-06). Verified end to end from the
+  live site: a pick writes, the listener fires back, and the picker flips from
+  "Following the week" to "On the TV now".
+
 Not done:
 
 - [ ] **The real program.** `docs/program.js` is a flagged placeholder. Section 6.
-- [ ] **GitHub Pages turned on.** Settings, Pages, branch `main`, folder `/docs`.
-      Until then there is no URL to point anything at.
-- [ ] **Firestore rules published.** Section 7. Every pick fails until this is done.
 - [ ] **The board pointed at the URL.** Section 8. The Tinker Board was powered
-      off when this was built, so none of it was applied.
+      off when this was built, so none of it was applied. He is doing this one.
 - [ ] Picker installed to his phone home screen.
 
 ---
@@ -156,10 +158,15 @@ the same public config already committed in `scenicprints/parchis`.
 
 One document: `gymboard/tv`, holding `{ selected: string|null, at: serverTimestamp }`.
 
-`firestore.rules` in this repo holds the block that has to be added. **It is not
-published yet.** Firebase Console, Firestore Database, Rules, paste, publish. Old
-versions are kept in the left panel, so a bad publish is one click to undo. Until
-it is published every pick fails and the picker toasts "No connection".
+`firestore.rules` in this repo is the whole published ruleset, not a fragment.
+**It was published on 2026-10-06** and reads and writes to `gymboard/tv` work.
+The leagues and parchis blocks were preserved exactly; only the `gymboard` block
+was added.
+
+If it ever needs changing: Firebase Console, Firestore Database, Rules, paste,
+publish. Old versions are kept in the left panel, so a bad publish is one click
+to undo. With the rules missing, every pick fails with `permission-denied` and
+the picker toasts "No connection".
 
 ---
 
@@ -208,14 +215,13 @@ static page of text does not care.
 ## 9. Next, in order
 
 1. **Get the answer on gym equipment, then write the real program.** Section 6.
-2. **Turn on GitHub Pages** (`main`, `/docs`) and confirm both URLs load.
-3. **Publish the Firestore rules.** Section 7.
-4. **Point the board at the TV URL** and confirm a pick on the phone moves it.
-   Section 8.
-5. **Install the picker** to his phone home screen.
-6. **Write `publish.ps1`**, the way BodyComp has one: take a version and a note,
+   This is the only thing standing between here and finished.
+2. **Point the board at the TV URL** and confirm a pick on the phone moves it.
+   Section 8. He said he would do this one himself.
+3. **Install the picker** to his phone home screen.
+4. **Write `publish.ps1`**, the way BodyComp has one: take a version and a note,
    bump all five places from section 5, commit, push.
-7. **Logging, only if he asks.** He asked to see the workout, not to record it.
+5. **Logging, only if he asks.** He asked to see the workout, not to record it.
    Ticking sets off needs input and a write path and was never requested. Do not
    build it unprompted.
 

@@ -40,10 +40,11 @@ own. On the phone, hit **Check for updates** in the footer, or just reopen it.
 Shipping a code change means bumping the version in five places. `ROADMAP.md`
 section 5 lists them.
 
-## Setup, one time
+## Setup
 
-1. GitHub Pages on: Settings, Pages, branch `main`, folder `/docs`.
-2. Publish `firestore.rules` in the Firebase console, or every pick fails.
-3. Point the kiosk at the TV URL. `ROADMAP.md` section 8 has the two commands.
-4. Open the phone URL and add it to your home screen.
-5. On the Vizio, turn off the sleep timer and no-signal auto power off.
+Pages and the Firestore rules are both done. What is left:
+
+1. Point the kiosk at the TV URL. `ROADMAP.md` section 8 has the two commands.
+2. Open the phone URL and add it to your home screen.
+3. On the Vizio, turn off the sleep timer and no-signal auto power off.
+4. Replace `docs/program.js` with your actual program.
