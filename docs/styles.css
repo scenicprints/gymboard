@@ -44,7 +44,7 @@ body.tv { overflow: hidden; cursor: none; padding: var(--safe-y) var(--safe-x);
 }
 .tv .clock b i, .tv .count b i { font-style: normal; color: #3d434d; }
 .tv .clock span, .tv .count span {
-  display: block; font-size: 1.4vh; letter-spacing: 0.42em; color: var(--dim); margin-top: 0.8vh;
+  display: block; font-size: 1.9vh; letter-spacing: 0.26em; color: #9aa3ae; margin-top: 0.9vh;
 }
 .tv .tmr { align-self: center; font-size: 5.2vh; font-weight: 200;
            letter-spacing: -0.02em; color: var(--accent); }
@@ -58,20 +58,20 @@ body.tv { overflow: hidden; cursor: none; padding: var(--safe-y) var(--safe-x);
 .tv .cell:last-child { border-right: 0; }
 .tv .art { flex: 1 1 auto; width: 100%; min-height: 0; }
 .tv .rep { font-size: 6.2vh; font-weight: 200; letter-spacing: -0.03em; line-height: 1; }
-.tv .rep i { font-style: normal; font-size: 2.6vh; color: var(--dim); }
-.tv .mv { font-size: 1.4vh; letter-spacing: 0.34em; color: var(--dim);
+.tv .rep i { font-style: normal; font-size: 3vh; color: #9aa3ae; }
+.tv .mv { font-size: 2.4vh; letter-spacing: 0.16em; color: #c3cad3;
           text-transform: uppercase; margin-top: 1.4vh; text-align: center; }
-.tv .note { font-size: 1.3vh; color: #39414c; margin-top: 0.5vh; text-align: center; }
+.tv .note { font-size: 1.9vh; color: #7c848f; margin-top: 0.7vh; text-align: center; }
 
 .tv .big, .tv .rest, .tv .stats {
   flex: 1 1 auto; display: flex; flex-direction: column;
   align-items: center; justify-content: center; gap: 1.6vh;
 }
-.tv .kicker { font-size: 1.5vh; letter-spacing: 0.44em; color: var(--dim); }
+.tv .kicker { font-size: 2.1vh; letter-spacing: 0.24em; color: #9aa3ae; }
 .tv .headline { font-size: 11vh; font-weight: 200; letter-spacing: -0.04em; line-height: 1; }
 .tv .sub { font-size: 2.6vh; color: var(--dim); }
-.tv .hint { flex: 0 0 auto; text-align: center; font-size: 1.6vh;
-            letter-spacing: 0.3em; color: #39414c; padding: 1.8vh 0 0.4vh;
+.tv .hint { flex: 0 0 auto; text-align: center; font-size: 2.1vh;
+            letter-spacing: 0.2em; color: #79818c; padding: 1.8vh 0 0.4vh;
             text-transform: uppercase; }
 
 .tv .restnum { font-size: 22vh; font-weight: 200; letter-spacing: -0.05em; line-height: 1; }
@@ -97,8 +97,8 @@ body.tv { overflow: hidden; cursor: none; padding: var(--safe-y) var(--safe-x);
 .tv .fact { text-align: right; }
 .tv .fact b { display: block; font-size: 5.2vh; font-weight: 200;
               letter-spacing: -0.03em; line-height: 1; }
-.tv .fact span { display: block; font-size: 1.3vh; letter-spacing: 0.34em;
-                 color: var(--dim); margin-top: 0.9vh; }
+.tv .fact span { display: block; font-size: 1.8vh; letter-spacing: 0.22em;
+                 color: #9aa3ae; margin-top: 0.9vh; }
 .tv .facts.row { justify-content: center; margin-top: 2.4vh; gap: 5vw; }
 .tv .facts.row .fact { text-align: center; }
 
@@ -109,13 +109,13 @@ body.tv { overflow: hidden; cursor: none; padding: var(--safe-y) var(--safe-x);
 .tv .plain li { display: flex; flex-direction: column; align-items: center; gap: 0.6vh; }
 .tv .plain b { font-size: 4.4vh; font-weight: 200; letter-spacing: -0.02em; }
 .tv .plain b i { font-style: normal; font-size: 1.8vh; color: var(--dim); }
-.tv .plain span { font-size: 1.3vh; letter-spacing: 0.3em; color: var(--dim); text-transform: uppercase; }
+.tv .plain span { font-size: 2vh; letter-spacing: 0.16em; color: #c3cad3; text-transform: uppercase; }
 
 .tv .bars { width: 56vw; margin-top: 3vh; display: flex; flex-direction: column; gap: 1vh; }
 .tv .bar { display: flex; align-items: center; gap: 1vw; height: 2.8vh; }
-.tv .bar u { text-decoration: none; font-size: 1.4vh; color: var(--dim); width: 2vw; }
+.tv .bar u { text-decoration: none; font-size: 2vh; color: #9aa3ae; width: 2.4vw; }
 .tv .bar span { height: 100%; background: var(--accent); opacity: 0.8; border-radius: 1px; }
-.tv .bar i { font-style: normal; font-size: 1.7vh; color: var(--dim); }
+.tv .bar i { font-style: normal; font-size: 2.2vh; color: #c3cad3; }
 
 /* ══ THE PHONE ═════════════════════════════════════════════════════════ */
 

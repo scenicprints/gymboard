@@ -174,7 +174,7 @@ window.ROUTINES = [
   "id": "l1-r2"
  },
  {
-  "name": "6 strides",
+  "name": "Suicide and jumps",
   "level": 1,
   "order": 3,
   "warmup": [
@@ -199,22 +199,25 @@ window.ROUTINES = [
    {
     "movement": "arm-circle",
     "reps": 20
-   },
-   {
-    "movement": "run",
-    "distance_m": 100,
-    "note": "build up, out and back"
    }
   ],
   "circuits": [
    {
-    "repeat": 6,
-    "rest_after_seconds": 120,
+    "repeat": 3,
+    "rest_after_seconds": 150,
     "movements": [
      {
-      "movement": "run",
-      "distance_m": 100,
-      "note": "strides, not all out, out and back"
+      "movement": "suicide-run",
+      "reps": 2,
+      "note": "down and back, no stopping"
+     },
+     {
+      "movement": "broad-jump",
+      "reps": 10
+     },
+     {
+      "movement": "jump-squat",
+      "reps": 16
      }
     ]
    },
@@ -238,7 +241,7 @@ window.ROUTINES = [
   "id": "l1-r3"
  },
  {
-  "name": "2 sets of 8 shuttles",
+  "name": "Run and core",
   "level": 1,
   "order": 4,
   "warmup": [
@@ -267,34 +270,21 @@ window.ROUTINES = [
   ],
   "circuits": [
    {
-    "repeat": 8,
-    "rest_after_seconds": 30,
+    "repeat": 3,
+    "rest_after_seconds": 120,
     "movements": [
      {
       "movement": "run",
-      "distance_m": 100,
-      "note": "hard, out and back"
-     }
-    ]
-   },
-   {
-    "rest_after_seconds": 60,
-    "movements": [
-     {
-      "movement": "jog",
       "distance_m": 400,
-      "note": "easy"
-     }
-    ]
-   },
-   {
-    "repeat": 8,
-    "rest_after_seconds": 30,
-    "movements": [
+      "note": "down the street and back, hard"
+     },
      {
-      "movement": "run",
-      "distance_m": 100,
-      "note": "hard, out and back"
+      "movement": "sit-up",
+      "reps": 20
+     },
+     {
+      "movement": "flutter-kick",
+      "reps": 30
      }
     ]
    },
@@ -689,7 +679,7 @@ window.ROUTINES = [
   "id": "l2-r2"
  },
  {
-  "name": "8 sprints",
+  "name": "Suicide and jumps",
   "level": 2,
   "order": 3,
   "warmup": [
@@ -714,22 +704,25 @@ window.ROUTINES = [
    {
     "movement": "arm-circle",
     "reps": 20
-   },
-   {
-    "movement": "run",
-    "distance_m": 100,
-    "note": "build up, out and back"
    }
   ],
   "circuits": [
    {
-    "repeat": 8,
-    "rest_after_seconds": 180,
+    "repeat": 4,
+    "rest_after_seconds": 150,
     "movements": [
      {
-      "movement": "run",
-      "distance_m": 100,
-      "note": "hard, out and back"
+      "movement": "suicide-run",
+      "reps": 3,
+      "note": "down and back, no stopping"
+     },
+     {
+      "movement": "broad-jump",
+      "reps": 12
+     },
+     {
+      "movement": "jump-squat",
+      "reps": 20
      }
     ]
    },
@@ -753,7 +746,7 @@ window.ROUTINES = [
   "id": "l2-r3"
  },
  {
-  "name": "2 sets of 10 shuttles",
+  "name": "Run and core",
   "level": 2,
   "order": 4,
   "warmup": [
@@ -782,34 +775,21 @@ window.ROUTINES = [
   ],
   "circuits": [
    {
-    "repeat": 10,
-    "rest_after_seconds": 30,
+    "repeat": 4,
+    "rest_after_seconds": 120,
     "movements": [
      {
       "movement": "run",
-      "distance_m": 100,
-      "note": "hard, out and back"
-     }
-    ]
-   },
-   {
-    "rest_after_seconds": 60,
-    "movements": [
-     {
-      "movement": "jog",
       "distance_m": 400,
-      "note": "easy"
-     }
-    ]
-   },
-   {
-    "repeat": 10,
-    "rest_after_seconds": 30,
-    "movements": [
+      "note": "down the street and back, hard"
+     },
      {
-      "movement": "run",
-      "distance_m": 100,
-      "note": "hard, out and back"
+      "movement": "russian-twist",
+      "reps": 40
+     },
+     {
+      "movement": "flutter-kick",
+      "reps": 40
      }
     ]
    },
@@ -1205,7 +1185,7 @@ window.ROUTINES = [
   "id": "l3-r2"
  },
  {
-  "name": "8 sprints",
+  "name": "Suicide and jumps",
   "level": 3,
   "order": 3,
   "warmup": [
@@ -1230,29 +1210,18 @@ window.ROUTINES = [
    {
     "movement": "arm-circle",
     "reps": 20
-   },
-   {
-    "movement": "run",
-    "distance_m": 100,
-    "note": "build up, out and back"
    }
   ],
   "circuits": [
    {
-    "repeat": 8,
+    "repeat": 4,
     "rest_after_seconds": 150,
     "movements": [
      {
-      "movement": "run",
-      "distance_m": 100,
-      "note": "all out, out and back"
-     }
-    ]
-   },
-   {
-    "repeat": 2,
-    "rest_after_seconds": 60,
-    "movements": [
+      "movement": "suicide-run",
+      "reps": 4,
+      "note": "down and back, no stopping"
+     },
      {
       "movement": "skater-jump",
       "reps": 20,
@@ -1260,7 +1229,7 @@ window.ROUTINES = [
      },
      {
       "movement": "broad-jump",
-      "reps": 10
+      "reps": 14
      }
     ]
    },
@@ -1283,7 +1252,7 @@ window.ROUTINES = [
   "id": "l3-r3"
  },
  {
-  "name": "2 sets of 12 shuttles",
+  "name": "Run and core",
   "level": 3,
   "order": 4,
   "warmup": [
@@ -1312,48 +1281,25 @@ window.ROUTINES = [
   ],
   "circuits": [
    {
-    "repeat": 12,
-    "rest_after_seconds": 20,
+    "repeat": 4,
+    "rest_after_seconds": 120,
     "movements": [
      {
       "movement": "run",
-      "distance_m": 100,
-      "note": "hard, out and back"
-     }
-    ]
-   },
-   {
-    "rest_after_seconds": 60,
-    "movements": [
-     {
-      "movement": "jog",
       "distance_m": 400,
-      "note": "easy"
-     }
-    ]
-   },
-   {
-    "repeat": 12,
-    "rest_after_seconds": 20,
-    "movements": [
-     {
-      "movement": "run",
-      "distance_m": 100,
-      "note": "hard, out and back"
-     }
-    ]
-   },
-   {
-    "repeat": 2,
-    "rest_after_seconds": 60,
-    "movements": [
-     {
-      "movement": "flutter-kick",
-      "reps": 40
+      "note": "down the street and back, hard"
      },
      {
-      "movement": "russian-twist",
-      "reps": 40
+      "movement": "v-up",
+      "reps": 30
+     },
+     {
+      "movement": "bicycle-crunch",
+      "reps": 56
+     },
+     {
+      "movement": "flutter-kick",
+      "reps": 30
      }
     ]
    },
@@ -1751,7 +1697,7 @@ window.ROUTINES = [
   "id": "l4-r2"
  },
  {
-  "name": "10 sprints",
+  "name": "Suicide and jumps",
   "level": 4,
   "order": 3,
   "warmup": [
@@ -1776,37 +1722,29 @@ window.ROUTINES = [
    {
     "movement": "high-knees",
     "reps": 30
-   },
-   {
-    "movement": "run",
-    "distance_m": 100,
-    "note": "build up, out and back"
    }
   ],
   "circuits": [
    {
-    "repeat": 10,
+    "repeat": 4,
     "rest_after_seconds": 120,
     "movements": [
      {
-      "movement": "run",
-      "distance_m": 100,
-      "note": "all out, out and back"
-     }
-    ]
-   },
-   {
-    "repeat": 2,
-    "rest_after_seconds": 60,
-    "movements": [
+      "movement": "suicide-run",
+      "reps": 4,
+      "note": "down and back, no stopping"
+     },
+     {
+      "movement": "tuck-jump",
+      "reps": 14
+     },
+     {
+      "movement": "jump-squat",
+      "reps": 24
+     },
      {
       "movement": "broad-jump",
       "reps": 16
-     },
-     {
-      "movement": "skater-jump",
-      "reps": 30,
-      "note": "15 per side"
      }
     ]
    },
@@ -1829,7 +1767,7 @@ window.ROUTINES = [
   "id": "l4-r3"
  },
  {
-  "name": "3 sets of 10 shuttles",
+  "name": "Run and core",
   "level": 4,
   "order": 4,
   "warmup": [
@@ -1858,68 +1796,24 @@ window.ROUTINES = [
   ],
   "circuits": [
    {
-    "repeat": 10,
-    "rest_after_seconds": 20,
+    "repeat": 4,
+    "rest_after_seconds": 90,
     "movements": [
      {
       "movement": "run",
-      "distance_m": 100,
-      "note": "hard, out and back"
-     }
-    ]
-   },
-   {
-    "rest_after_seconds": 60,
-    "movements": [
-     {
-      "movement": "jog",
       "distance_m": 400,
-      "note": "easy"
-     }
-    ]
-   },
-   {
-    "repeat": 10,
-    "rest_after_seconds": 20,
-    "movements": [
-     {
-      "movement": "run",
-      "distance_m": 100,
-      "note": "hard, out and back"
-     }
-    ]
-   },
-   {
-    "rest_after_seconds": 60,
-    "movements": [
-     {
-      "movement": "jog",
-      "distance_m": 400,
-      "note": "easy"
-     }
-    ]
-   },
-   {
-    "repeat": 10,
-    "rest_after_seconds": 20,
-    "movements": [
-     {
-      "movement": "run",
-      "distance_m": 100,
-      "note": "hard, out and back"
-     }
-    ]
-   },
-   {
-    "repeat": 2,
-    "rest_after_seconds": 60,
-    "movements": [
-     {
-      "movement": "v-up",
-      "reps": 25
+      "note": "down the street and back, hard"
      },
      {
-      "movement": "bicycle-crunch",
+      "movement": "v-up",
+      "reps": 28
+     },
+     {
+      "movement": "russian-twist",
+      "reps": 50
+     },
+     {
+      "movement": "flutter-kick",
       "reps": 40
      }
     ]
@@ -2294,7 +2188,7 @@ window.ROUTINES = [
      },
      {
       "movement": "table-row",
-      "reps": 18
+      "reps": 20
      },
      {
       "movement": "sit-up",
@@ -2314,7 +2208,7 @@ window.ROUTINES = [
   "id": "l5-r2"
  },
  {
-  "name": "4 sprints",
+  "name": "Suicide and jumps",
   "level": 5,
   "order": 3,
   "warmup": [
@@ -2339,36 +2233,30 @@ window.ROUTINES = [
    {
     "movement": "high-knees",
     "reps": 30
-   },
-   {
-    "movement": "run",
-    "distance_m": 100,
-    "note": "build up, out and back"
    }
   ],
   "circuits": [
    {
-    "repeat": 4,
-    "rest_after_seconds": 180,
+    "repeat": 5,
+    "rest_after_seconds": 120,
     "movements": [
      {
-      "movement": "run",
-      "distance_m": 400,
-      "note": "down the street and back, all out"
-     }
-    ]
-   },
-   {
-    "repeat": 2,
-    "rest_after_seconds": 60,
-    "movements": [
+      "movement": "suicide-run",
+      "reps": 5,
+      "note": "down and back, no stopping"
+     },
      {
       "movement": "tuck-jump",
-      "reps": 15
+      "reps": 16
      },
      {
       "movement": "jump-squat",
-      "reps": 24
+      "reps": 28
+     },
+     {
+      "movement": "skater-jump",
+      "reps": 30,
+      "note": "15 per side"
      }
     ]
    },
@@ -2391,7 +2279,7 @@ window.ROUTINES = [
   "id": "l5-r3"
  },
  {
-  "name": "3 sets of 12 shuttles",
+  "name": "Run and core",
   "level": 5,
   "order": 4,
   "warmup": [
@@ -2420,65 +2308,21 @@ window.ROUTINES = [
   ],
   "circuits": [
    {
-    "repeat": 12,
-    "rest_after_seconds": 15,
+    "repeat": 5,
+    "rest_after_seconds": 90,
     "movements": [
      {
       "movement": "run",
-      "distance_m": 100,
-      "note": "hard, out and back"
-     }
-    ]
-   },
-   {
-    "rest_after_seconds": 60,
-    "movements": [
-     {
-      "movement": "jog",
       "distance_m": 400,
-      "note": "easy"
-     }
-    ]
-   },
-   {
-    "repeat": 12,
-    "rest_after_seconds": 15,
-    "movements": [
+      "note": "down the street and back, hard"
+     },
      {
-      "movement": "run",
-      "distance_m": 100,
-      "note": "hard, out and back"
-     }
-    ]
-   },
-   {
-    "rest_after_seconds": 60,
-    "movements": [
+      "movement": "v-up",
+      "reps": 30
+     },
      {
-      "movement": "jog",
-      "distance_m": 400,
-      "note": "easy"
-     }
-    ]
-   },
-   {
-    "repeat": 12,
-    "rest_after_seconds": 15,
-    "movements": [
-     {
-      "movement": "run",
-      "distance_m": 100,
-      "note": "hard, out and back"
-     }
-    ]
-   },
-   {
-    "repeat": 2,
-    "rest_after_seconds": 60,
-    "movements": [
-     {
-      "movement": "hollow-hold",
-      "seconds": 60
+      "movement": "bicycle-crunch",
+      "reps": 50
      },
      {
       "movement": "flutter-kick",

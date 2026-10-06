@@ -228,7 +228,7 @@
     ]
   },
   {
-    "name": "Suicide and core",
+    "name": "Run and core",
     "level": 1,
     "order": 4,
     "warmup": [
@@ -261,9 +261,9 @@
         "rest_after_seconds": 120,
         "movements": [
           {
-            "movement": "suicide-run",
-            "reps": 2,
-            "note": "down and back, no stopping"
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
           },
           {
             "movement": "sit-up",
@@ -727,7 +727,7 @@
     ]
   },
   {
-    "name": "Suicide and core",
+    "name": "Run and core",
     "level": 2,
     "order": 4,
     "warmup": [
@@ -760,9 +760,9 @@
         "rest_after_seconds": 120,
         "movements": [
           {
-            "movement": "suicide-run",
-            "reps": 3,
-            "note": "down and back, no stopping"
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
           },
           {
             "movement": "russian-twist",
@@ -1227,7 +1227,7 @@
     ]
   },
   {
-    "name": "Suicide and core",
+    "name": "Run and core",
     "level": 3,
     "order": 4,
     "warmup": [
@@ -1260,9 +1260,9 @@
         "rest_after_seconds": 120,
         "movements": [
           {
-            "movement": "suicide-run",
-            "reps": 4,
-            "note": "down and back, no stopping"
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
           },
           {
             "movement": "v-up",
@@ -1271,6 +1271,10 @@
           {
             "movement": "bicycle-crunch",
             "reps": 56
+          },
+          {
+            "movement": "flutter-kick",
+            "reps": 30
           }
         ]
       },
@@ -1732,7 +1736,7 @@
     ]
   },
   {
-    "name": "Suicide and core",
+    "name": "Run and core",
     "level": 4,
     "order": 4,
     "warmup": [
@@ -1765,13 +1769,13 @@
         "rest_after_seconds": 90,
         "movements": [
           {
-            "movement": "suicide-run",
-            "reps": 4,
-            "note": "down and back, no stopping"
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
           },
           {
             "movement": "v-up",
-            "reps": 25
+            "reps": 28
           },
           {
             "movement": "russian-twist",
@@ -2238,7 +2242,7 @@
     ]
   },
   {
-    "name": "Suicide and core",
+    "name": "Run and core",
     "level": 5,
     "order": 4,
     "warmup": [
@@ -2271,9 +2275,9 @@
         "rest_after_seconds": 90,
         "movements": [
           {
-            "movement": "suicide-run",
-            "reps": 5,
-            "note": "down and back, no stopping"
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
           },
           {
             "movement": "v-up",
