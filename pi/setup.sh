@@ -35,6 +35,16 @@ install -m 755 "$HERE/gymboard-kiosk" /usr/local/bin/gymboard-kiosk
 install -m 644 "$HERE/gymboard.service" /etc/systemd/system/gymboard.service
 systemctl daemon-reload
 
+echo "==> the way back in"
+# If it ever cannot find a known network it raises its own, which is the
+# only route into a machine with no USB, no ethernet and no keyboard. The
+# timer is what stops it sitting there once a real network returns.
+install -m 755 "$HERE/gymboard-netcheck" /usr/local/bin/gymboard-netcheck
+install -m 644 "$HERE/gymboard-netcheck.service" /etc/systemd/system/gymboard-netcheck.service
+install -m 644 "$HERE/gymboard-netcheck.timer" /etc/systemd/system/gymboard-netcheck.timer
+systemctl daemon-reload
+systemctl enable --now gymboard-netcheck.timer
+
 echo "==> the screen belongs to the board, not to a console"
 systemctl disable --now getty@tty1 || true
 
