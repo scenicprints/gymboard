@@ -53,9 +53,14 @@ function render() {
   }
 
   const rows = session.work.map((w) => {
-    const load = (w.load === null || w.load === undefined || w.load === '')
+    const blank = w.load === null || w.load === undefined || w.load === '';
+    // A bare number gets the units; anything written out ("bodyweight",
+    // "band") is already a sentence and gets left alone.
+    const unit = (typeof w.load === 'number' || /^[\d.]+$/.test(String(w.load)))
+      ? `<span class="unit">${esc(P.units)}</span>` : '';
+    const load = blank
       ? `<div class="load blank">&mdash;</div>`
-      : `<div class="load">${esc(w.load)}</div>`;
+      : `<div class="load">${esc(w.load)}${unit}</div>`;
     return `
       <div class="row">
         <div>
@@ -73,7 +78,7 @@ function render() {
         <h1>${esc(session.name)}</h1>
         ${session.focus ? `<div class="focus">${esc(session.focus)}</div>` : ''}
       </div>
-      <div class="today">${esc(P.units)}<b>${esc(dayName)}</b></div>
+      <div class="today"><b>${esc(dayName)}</b></div>
     </header>
     <div class="work">${rows}</div>
     ${banner()}`;
