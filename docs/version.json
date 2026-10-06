@@ -1,1 +1,1 @@
-{ "version": "0.2.4", "notes": "The board: circuit progress across the top, a real idle screen, and the rest and stats screens built out." }
+{ "version": "0.2.5", "notes": "Every movement is drawn. All 41 animate, with red on the muscle doing the work." }

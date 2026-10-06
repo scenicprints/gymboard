@@ -5,11 +5,12 @@
 // ten-minute max-age, and "network first" through a browser cache is just
 // the stale copy wearing a network hat. The ?v= stamps bust the rest.
 
-const CACHE = 'gymboard-v5';
+const CACHE = 'gymboard-v6';
 const SHELL = [
   './',
   'index.html',
   'tv.html',
+  'sheet.html',
   'styles.css',
   'routines.js',
   'exercise.js',

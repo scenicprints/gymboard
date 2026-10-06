@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Gymboard art sheet</title>
+<style>
+  html,body{margin:0;background:#0a0b0d;color:#dfe5ec;
+    font-family:"Helvetica Neue",Arial,sans-serif}
+  .grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:2px}
+  .c{background:#0e1014;display:flex;flex-direction:column;align-items:center}
+  svg{width:100%;height:auto;display:block}
+  .n{font-size:9px;letter-spacing:.14em;color:#5b626d;text-transform:uppercase;
+     padding:2px 0 6px;text-align:center}
+</style>
+</head>
+<body>
+<div class="grid" id="g"></div>
+<script src="routines.js"></script>
+<script type="module">
+import { drawMovement } from './exercise.js';
+const used = new Set();
+for (const r of window.ROUTINES) {
+  for (const m of r.warmup || []) used.add(m.movement);
+  for (const c of r.circuits) for (const m of c.movements) used.add(m.movement);
+}
+const ids = [...used].sort();
+const g = document.getElementById('g');
+const cells = ids.map((id, i) => {
+  const d = document.createElement('div');
+  d.className = 'c';
+  d.innerHTML = `<svg viewBox="14 22 176 164"></svg><div class="n">${id}</div>`;
+  g.appendChild(d);
+  const svg = d.querySelector('svg');
+  const grp = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  svg.appendChild(grp);
+  return { grp, id, off: i * 97 };
+});
+setInterval(() => {
+  const t = performance.now();
+  for (const c of cells) drawMovement(c.grp, c.id, t + c.off);
+}, 42);
+</script>
+</body>
+</html>
