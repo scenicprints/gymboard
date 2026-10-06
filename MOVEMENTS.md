@@ -13,15 +13,18 @@ has to read small.
 
 ## Batch 1, needed from level 1
 
-16 ids.
+21 ids.
 
 | id | What it shows |
 |---|---|
 | `arm-circle` | Standing, arms circling. Warm-up only. |
+| `broad-jump` | Two-footed jump forward for distance, landing soft. |
 | `donkey-kick` | On hands and knees, one heel driven up and back. |
+| `flutter-kick` | On the back, legs straight, kicking alternately just off the floor. |
 | `glute-bridge` | On the back, feet on the floor, hips driven up. |
 | `hollow-hold` | On the back, shoulders and heels off the floor. A hold. |
 | `jog` | Running easy. Needs to read as slower than `run`. |
+| `jump-squat` | Squat into a jump, landing soft. |
 | `mountain-climber` | Front plank, knees driving to the chest alternately. |
 | `plank` | Front plank on the forearms. A hold, so it barely moves. |
 | `prone-swimmer` | Face down, arms sweeping from overhead to the hips and back. |
@@ -30,20 +33,21 @@ has to read small.
 | `run` | Running. Used for every distance, 100m to 800m. |
 | `side-plank` | Side plank on one forearm. Drawn on one side only. |
 | `single-leg-deadlift` | Standing on one leg, hinging at the hip, back leg rising behind. |
+| `sit-up` | Full sit-up, shoulders to knees. |
 | `split-squat` | Rear foot up on a chair, front leg does the work. |
 | `squat` | Bodyweight squat, hips to below parallel. |
+| `suicide-run` | Sprint down the road, turn, sprint back, turn, repeat. One unbroken effort, the turns are in it. |
 | `wall-sit` | Back on a wall, thighs parallel to the floor. A hold. |
 
 ## Batch 2, needed from levels 2 and 3
 
-17 ids.
+16 ids.
 
 | id | What it shows |
 |---|---|
-| `broad-jump` | Two-footed jump forward for distance, landing soft. |
+| `bicycle-crunch` | On the back, opposite elbow to knee, alternating. |
 | `curtsy-lunge` | Step one leg behind and across, then stand. |
 | `dead-bug` | On the back, opposite arm and leg extending. A slow hold. |
-| `flutter-kick` | On the back, legs straight, kicking alternately just off the floor. |
 | `hip-thrust` | Shoulders on a couch or bed, feet on the floor, hips driven up. |
 | `inchworm` | Bend to the floor, walk the hands out to a plank, walk them back. |
 | `lateral-lunge` | Step wide to one side, sit into that hip, return. |
@@ -60,17 +64,14 @@ has to read small.
 
 ## Batch 3, needed from levels 4 and 5
 
-8 ids.
+5 ids.
 
 | id | What it shows |
 |---|---|
-| `bicycle-crunch` | On the back, opposite elbow to knee, alternating. |
 | `burpee` | Down to the floor, chest down, up to a jump. |
 | `high-knees` | Running in place, knees high. Warm-up only. |
-| `jump-squat` | Squat into a jump, landing soft. |
 | `jumping-lunge` | Lunge, jump, land in the other lunge. |
 | `shoulder-tap` | Front plank, one hand tapping the opposite shoulder. |
-| `sit-up` | Full sit-up, shoulders to knees. |
 | `tuck-jump` | Jump, knees tucked to the chest, land soft. |
 
 ## The holds
@@ -79,6 +80,15 @@ has to read small.
 `seconds`, which turns the circuit timer on, and every value in the routines is
 30, 60, 90 or 120 so a hold starts on a beep and ends on a beep. Draw these as
 a position being held, not a movement being repeated.
+
+## The suicide run
+
+`suicide-run` is one movement, not a set. The whole thing is a single
+continuous effort and the turns are part of it, so the animation wants to show
+the out and back with the turn, not a person running in a straight line.
+
+Its number is a **count of down and backs**, not metres. `reps: 4` is four of
+them without stopping. Metres would just read as an ordinary run.
 
 ## Movements that need a prop or a partner
 

@@ -14,6 +14,12 @@ PROFILE="$HOME/.gymboard-chromium"
 # After a power cut Chromium offers to restore pages. Nobody is standing
 # at the TV to dismiss that, so the exit state is cleaned before launch.
 PREFS="$PROFILE/Default/Preferences"
+# A hard power cut, or the machine being renamed, leaves these behind and
+# Chromium then refuses to start at all: it believes another computer has
+# the profile open. Nobody is here to answer that dialog, so the locks go
+# before every launch.
+rm -f "$PROFILE/SingletonLock" "$PROFILE/SingletonCookie" "$PROFILE/SingletonSocket"
+
 if [ -f "$PREFS" ]; then
   sed -i 's/"exit_type":"[^"]*"/"exit_type":"Normal"/; s/"exited_cleanly":false/"exited_cleanly":true/' "$PREFS"
 fi
@@ -32,7 +38,8 @@ exec cage -d -- chromium \
   --kiosk "$URL" \
   --user-data-dir="$PROFILE" \
   --ozone-platform=wayland \
-  --noerrdialogs \n  --autoplay-policy=no-user-gesture-required \
+  --noerrdialogs \
+  --autoplay-policy=no-user-gesture-required \
   --no-first-run \
   --disable-infobars \
   --disable-session-crashed-bubble \

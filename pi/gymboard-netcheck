@@ -1,0 +1,37 @@
+#!/bin/sh
+# ─────────────────────────────────────────────────────────────────────
+# ESCAPE FROM THE RECOVERY AP
+#
+# When the board cannot find a known network it raises its own, which is
+# the only way back into a machine with no USB, no ethernet and no
+# keyboard. The trap is that it then stays there: NetworkManager will not
+# abandon an access point it is actively running just because a known
+# network has come back.
+#
+# So a Pi that boots before the router does, or loses the house Wi-Fi for
+# a minute, would sit on its own AP forever and the TV would never see
+# another update.
+#
+# This checks every couple of minutes: if we are on the recovery AP and
+# somewhere better is in range, go there.
+# ─────────────────────────────────────────────────────────────────────
+
+RECOVERY="Gymboard-Recovery"
+
+ACTIVE=$(nmcli -t -f NAME con show --active | head -1)
+[ "$ACTIVE" = "$RECOVERY" ] || exit 0
+
+nmcli dev wifi rescan >/dev/null 2>&1
+sleep 6
+
+nmcli -t -f NAME,TYPE con show | awk -F: '$2 ~ /wireless/ {print $1}' | while read -r NAME; do
+  [ "$NAME" = "$RECOVERY" ] && continue
+  SSID=$(nmcli -t -g 802-11-wireless.ssid con show "$NAME" 2>/dev/null)
+  [ -n "$SSID" ] || continue
+  if nmcli -t -f SSID dev wifi list 2>/dev/null | grep -Fxq "$SSID"; then
+    logger -t gymboard "leaving the recovery AP for $SSID"
+    nmcli con up "$NAME" >/dev/null 2>&1 && exit 0
+  fi
+done
+
+exit 0

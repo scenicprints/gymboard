@@ -1,0 +1,6 @@
+[Unit]
+Description=Leave the Gymboard recovery AP when a known network is back
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/gymboard-netcheck
