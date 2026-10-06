@@ -12,8 +12,8 @@
 // nobody is standing there to see.
 // ─────────────────────────────────────────────────────────────────────
 
-import { watchSession, getDone } from './store.js?v=0.2.6';
-import { drawMovement } from './exercise.js?v=0.2.6';
+import { watchSession, getDone } from './store.js?v=0.2.7';
+import { drawMovement } from './exercise.js?v=0.2.7';
 
 const root = document.getElementById('root');
 const esc = (s) => String(s).replace(/[&<>"]/g,
@@ -40,6 +40,21 @@ const nice = (s) => esc(String(s).replace(/-/g, ' '));
 const timed = (c) => c.movements.some((m) => m.seconds != null);
 const repsOf = (r) => r.circuits.reduce((t, c) =>
   t + c.movements.reduce((u, m) => u + (m.reps || 0), 0), 0);
+
+const DAYS = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+const MONTHS = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY',
+                'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'];
+
+// ── going quiet ──────────────────────────────────────────────────────
+// The up next card is the ready state: someone is in the room, about to
+// start. It is not what should sit on a panel for six hours while nobody
+// is here, so after QUIET_AFTER the board drops to a clock.
+//
+// Clock driven like everything else. No new phase, no write, nothing for
+// the phone to remember. Any change to the session is a sign of life and
+// brings the card straight back.
+const QUIET_AFTER = 12 * 60 * 1000;
+let lastActivity = Date.now();
 
 // ── what is actually happening right now ─────────────────────────────
 function live(now) {
@@ -119,6 +134,42 @@ function paintIdle() {
   wire();
 }
 
+/// Big enough to read from the doorway, dim enough to ignore. It drifts
+/// on two periods that do not divide into each other, so it never traces
+/// the same path twice and no edge sits still long enough to stain.
+function driftQuiet(now) {
+  const el = document.getElementById('quiet');
+  if (!el) return;
+  const m = now / 60000;
+  const x = Math.sin((m / 7) * Math.PI * 2) * 1.7;
+  const y = Math.cos((m / 11) * Math.PI * 2) * 1.7;
+  el.style.transform = `translate(${x.toFixed(2)}vw, ${y.toFixed(2)}vh)`;
+}
+
+function paintQuiet(now) {
+  const d = new Date(now);
+  const hh = ((d.getHours() + 11) % 12) + 1;
+  const mm = String(d.getMinutes()).padStart(2, '0');
+  const r = upNext();
+
+  // Rebuilds once a minute, which is the only thing on screen that moves.
+  const key = 'quiet' + hh + mm + r.id + done.length;
+  if (painted !== key) {
+    root.innerHTML = `
+      <div class="quiet" id="quiet">
+        <div class="qtime">${hh}<i>:</i>${mm}</div>
+        <div class="qdate">${DAYS[d.getDay()]} &middot; ${MONTHS[d.getMonth()]} ${d.getDate()}</div>
+        <div class="qfoot">
+          <span>${done.length} <u>OF</u> ${all().length} DONE</span>
+          <span>LEVEL ${r.level} <u>&middot;</u> ${esc(r.name)}</span>
+        </div>
+      </div>`;
+    painted = key;
+    panels = [];
+  }
+  driftQuiet(now);
+}
+
 function paintStrip(key, head, movements) {
   if (painted === key) return;
   root.innerHTML = head + `<div class="strip">${movements.map(cell).join('')}</div>`;
@@ -128,7 +179,9 @@ function paintStrip(key, head, movements) {
 
 function render(now) {
   const s = live(now);
-  if (s.phase === 'idle') return paintIdle();
+  if (s.phase === 'idle') {
+    return now - lastActivity > QUIET_AFTER ? paintQuiet(now) : paintIdle();
+  }
 
   const raw = byId(s.routineId);
   if (!raw) return paintIdle();
@@ -248,7 +301,7 @@ setInterval(() => frame(performance.now()), 42);
 
 // OTA. The kiosk has no keyboard, so the page checks for a new build and
 // reloads itself.
-const BOOT_VERSION = '0.2.6';
+const BOOT_VERSION = '0.2.7';
 setInterval(async () => {
   try {
     const r = await fetch('version.json', { cache: 'no-store' });
@@ -262,6 +315,7 @@ getDone().then((d) => { done = d; painted = ''; }).catch(() => {});
 watchSession((s) => {
   session = s;
   painted = '';
+  lastActivity = Date.now();
   if (!s || s.phase === 'idle') getDone().then((d) => { done = d; painted = ''; }).catch(() => {});
 }).catch(() => {
   // No network on boot. The idle screen still renders from routines.js,

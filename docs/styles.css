@@ -209,3 +209,51 @@ body.pick {
   opacity: 0; pointer-events: none; transition: opacity .18s;
 }
 .pick .toast.up { opacity: 1; }
+
+/* ── the quiet screen ──────────────────────────────────────────────────
+   What the board sits on between sessions. Dimmer than every other
+   screen on purpose: it is background, not information anyone is waiting
+   for, and it may be the only thing on the panel for hours. */
+
+.tv .quiet {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4vh;
+  will-change: transform;
+  transition: transform 4s linear;
+}
+
+.tv .qtime {
+  font-size: 34vh;
+  font-weight: 100;
+  letter-spacing: -0.05em;
+  line-height: 0.86;
+  color: #e8ecf1;
+  font-variant-numeric: tabular-nums;
+}
+.tv .qtime i {
+  font-style: normal;
+  color: #2a2f36;
+  margin: 0 0.4vw;
+}
+
+.tv .qdate {
+  font-size: 2.4vh;
+  letter-spacing: 0.3em;
+  color: #78818e;
+  margin-top: 0.6vh;
+}
+
+.tv .qfoot {
+  display: flex;
+  gap: 4vw;
+  margin-top: 4.5vh;
+  font-size: 2.1vh;
+  letter-spacing: 0.22em;
+  color: #5b626d;
+  text-transform: uppercase;
+}
+.tv .qfoot u { text-decoration: none; color: #363c45; }
