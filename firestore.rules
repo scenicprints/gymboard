@@ -1,0 +1,35 @@
+// ═══════════════════════════════════════════════════════════════════════
+//  Firestore rules for the foos-6ecf3 project.
+//
+//  Gymboard reuses the project the foos league and Parchis already run in,
+//  so it only adds one block alongside theirs. This is the whole published
+//  ruleset, not a fragment: paste it over what is there.
+//
+//  Console, Firestore Database, Rules. Old versions are kept in the panel
+//  on the left of that screen, so a bad publish is one click to undo.
+//
+//  Until this is published, every pick on the phone fails and the picker
+//  toasts "No connection".
+// ═══════════════════════════════════════════════════════════════════════
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // The foos league.
+    match /leagues/{leagueId}/{rest=**} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Parchis: the "table" and "game" documents.
+    match /parchis/{doc} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Gymboard: the single "tv" document holding what is on screen.
+    match /gymboard/{doc} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
