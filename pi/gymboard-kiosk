@@ -32,7 +32,7 @@ exec cage -d -- chromium \
   --kiosk "$URL" \
   --user-data-dir="$PROFILE" \
   --ozone-platform=wayland \
-  --noerrdialogs \
+  --noerrdialogs \n  --autoplay-policy=no-user-gesture-required \
   --no-first-run \
   --disable-infobars \
   --disable-session-crashed-bubble \
