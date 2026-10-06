@@ -31,7 +31,7 @@ Two web pages and one shared value.
 
 | Surface | What it does |
 |---|---|
-| `docs/tv.html` | The board. The Tinker Board's Chromium kiosk opens this and never leaves. Shows the selected workout in type readable across a room. |
+| `docs/tv.html` | The board. The Pi's kiosk opens this at boot and never leaves. Shows the selected workout in type readable across a room. |
 | `docs/index.html` | The picker. Installs to his phone home screen as a PWA. A list of workouts, tap one. |
 | Firestore `gymboard/tv` | Holds `selected`, the session id currently on screen. Phone writes, TV listens. |
 
@@ -54,34 +54,31 @@ Six turns of the original conversation went into ruling these out.
 | **Phone screen mirroring** | Works, but the phone must stay awake and unlocked the whole session, and a Pixel is 20:9 into a 16:9 panel so it fills about 80 percent of the screen in landscape and 25 percent in portrait. He rejected it outright on the awake requirement. |
 | **Google Cast receiver** | Would work and needs nothing in the HDMI port. Costs a 5 dollar Cast Developer Console registration, a receiver page, and a native Android platform channel for the sender since Flutter has no real Cast support. Rejected as far more work for the same result. |
 | **Cast to a Raspberry Pi** | Not possible. There is no Google Cast receiver for Linux or Pi. `catt` and `pychromecast` are senders, not receivers. The old projects that tried (leapcast) are dead. |
-| **HDMI-CEC, drive the kiosk with the Vizio remote** | Viable but moot now that the phone is the control. Also the Tinker Board is Rockchip and its CEC is unreliable; a real Pi's HDMI does CEC properly. |
+| **HDMI-CEC, drive the kiosk with the Vizio remote** | Viable but moot now that the phone is the control. |
 | **State server on the Pi** | Rejected because it puts code on the board, which then needs deploying. Hosting both pages on GitHub Pages means updates arrive by `git push` and the board never gets touched again. |
 
 ---
 
 ## 4. Current status
 
-**v0.1.0, first build, not yet live on the board.**
+**v0.1.0 live. The board is built and running. The program is still a placeholder.**
 
-Done:
+Verified end to end on 2026-10-06:
 
-- Both pages, the shared store, the service worker, the manifest, the icons.
-- OTA on both surfaces (section 5).
-- The TV follows the week, handles rest days, rolls over at midnight.
-- The picker tags today's scheduled session, shows which one is live, and has a
-  "Follow the week" reset.
-
-- **GitHub Pages is live** at `https://scenicprints.github.io/gymboard/`.
-- **Firestore rules are published** (2026-10-06). Verified end to end from the
-  live site: a pick writes, the listener fires back, and the picker flips from
-  "Following the week" to "On the TV now".
+- GitHub Pages live, Firestore rules published.
+- The Pi appliance, section 8. It powers on showing the board with no input from
+  anyone, survives a reboot, and restarts itself if the browser dies.
+- A pick on the phone moves the Pi's screen. Confirmed by screenshotting the Pi's
+  own display output while picking from a separate machine, not by assuming.
 
 Not done:
 
-- [ ] **The real program.** `docs/program.js` is a flagged placeholder. Section 6.
-- [ ] **The board pointed at the URL.** Section 8. The Tinker Board was powered
-      off when this was built, so none of it was applied. He is doing this one.
-- [ ] Picker installed to his phone home screen.
+- [ ] **The program.** `docs/program.js` is still the flagged placeholder. He is
+      building his own, in the app. Section 6.
+- [ ] Picker installed to his phone home screen. His step.
+- [ ] The Pi hung on the gym TV and powered on at home. His step, and the only
+      thing that has never been tested, because his home Wi-Fi is not in range of
+      the work PC this was built from.
 
 ---
 
@@ -123,30 +120,29 @@ a bug waiting to happen.
 
 ---
 
-## 6. Job number one: the real program
+## 6. The program is his to build, in the app
 
-`docs/program.js` is a generic upper/lower split with every `load` null and
-`placeholder: true` set, which draws a banner on both surfaces. It is standing in
-so the board renders. It is **not his program**.
+**Do not hand write `docs/program.js` for him.** That was tried on 2026-10-06 and
+it was wrong. His words: "I will be making my own program in the app, or have you
+assist me in making it in the app."
 
-**It is blocked on one answer: what equipment is in his gym.** Barbell and rack,
-dumbbell range, cables, machines, bands. Exercise selection falls out of that
-entirely. He was asked and the night ended before he answered. Ask once, then
-write the program. Do not open a second round of questions.
+The equipment question in the old version of this section is dead. He answered
+"nothing" to it, and "what runs?" to the running. Do not open that round again.
 
-Context worth reading first, all in `C:\Users\jkevi\bodycomp`:
+So the program stops being a file someone edits and becomes something the phone
+authors:
 
-- He runs. `lib/trainer.dart` is an adaptive 5K run/walk ladder, so leg days have
-  to coexist with running days.
-- It is a **body recomposition** project, not pure strength. Its `ROADMAP.md`
-  explains the TDEE and goal weight math.
-- His weight, height and body fat numbers live in app storage on the phone, not
-  in the repo, so they cannot be read from disk. Ask or infer, do not invent.
-- Pantry (`C:\Users\jkevi\pantry`) carries a **fatty liver** constraint alongside
-  weight loss. Diet rather than training, but same person, same goal.
+- the program moves into Firestore, the phone writes it, the TV reads it
+- `docs/program.js` stays underneath as the offline fallback, which is what lets
+  the TV render the week with no network
+- the phone gets an editor: workouts, lifts, sets, reps, loads, and which workout
+  each weekday defaults to
 
-The data shape is documented in the header of `program.js`. Keep `id` values
-stable: Firestore stores the id, and a rename silently blanks the TV.
+The published rules already cover `gymboard/{doc}`, so a second document needs no
+rules change.
+
+Keep `id` values stable whatever happens. Firestore stores the id, and a rename
+silently blanks the TV.
 
 ---
 
@@ -172,58 +168,50 @@ the picker toasts "No connection".
 
 ## 8. The board
 
-Tinker Board, **192.168.1.173**, user `jkevin`. It was offline when this was built.
-Its kiosk lives in `C:\Users\jkevi\tv-launcher`:
+A **Raspberry Pi 3B+** in the TV's HDMI port. It was the foosball recorder until
+2026-10-06; that software, its recordings and every trace of the FoosCam hotspot
+were removed and it was rebuilt as a single purpose appliance.
 
-| File | What |
-|---|---|
-| `board/kiosk.sh` | Chromium full screen at `HOMEURL`, blanking off, cursor hidden |
-| `board/kiosk.desktop` | Autostart entry |
-| `board/12-autologin.conf` | Autologin |
-| `board/tv-remote.service` | systemd unit for `remote_server.py` |
-| `board/remote_server.py` | Phone trackpad remote, built for Marquee. Not needed here. |
-| `ssh_config`, `board_key` | `ssh -F ssh_config board` |
+Everything about it is in **`pi/`**, including a `setup.sh` that builds it from a
+stock Raspberry Pi OS Lite. Read `pi/README.md` before touching it. The short
+version:
 
-**The entire hardware change is one line.** In `board/kiosk.sh`, this:
+- `cage` plus `chromium --kiosk` at the TV URL, started by `gymboard.service`.
+- No console, no login, no desktop. `getty@tty1` is disabled.
+- `ssh jkevin@gymboard.local`, from the same network only.
+- `grim` is the only way to see what the board is showing without a TV attached.
 
-```
-HOMEURL="http://192.168.1.103:8096"
-```
+**This board has no USB and no ethernet.** Both are dead at the chip: the LAN7800
+half of the Microchip hub never enumerates, which takes the four USB ports with
+it. Confirmed, not guessed. So there is no keyboard option, no dongle option and
+no cable option, and Wi-Fi is the only interface it will ever have.
 
-becomes:
+That is why it keeps a recovery access point at the lowest autoconnect priority.
+If it cannot find a known network it raises the `Gymboard` network, and joining
+that is the only way back in. Do not delete that profile.
 
-```
-HOMEURL="https://scenicprints.github.io/gymboard/tv.html"
-```
-
-Then copy it up and restart the kiosk:
-
-```bash
-cd C:/Users/jkevi/tv-launcher
-./pscp.exe -i board_key board/kiosk.sh jkevin@192.168.1.173:/home/jkevin/kiosk.sh
-ssh -F ssh_config board 'chmod +x ~/kiosk.sh && pkill -f "chromium .*--kiosk"; nohup ~/kiosk.sh >/dev/null 2>&1 &'
-```
-
-On the Vizio itself, turn off the sleep timer and any no-signal auto power off, or
-it will shut down mid-session.
-
-Known from the Marquee work on this board: GPU acceleration was never resolved. A
-static page of text does not care.
+On the Vizio itself, turn off the sleep timer and any no-signal auto power off.
+The Pi holds its HDMI output on regardless, so the board is already drawn when
+the TV wakes.
 
 ---
 
 ## 9. Next, in order
 
-1. **Get the answer on gym equipment, then write the real program.** Section 6.
-   This is the only thing standing between here and finished.
-2. **Point the board at the TV URL** and confirm a pick on the phone moves it.
-   Section 8. He said he would do this one himself.
-3. **Install the picker** to his phone home screen.
-4. **Write `publish.ps1`**, the way BodyComp has one: take a version and a note,
-   bump all five places from section 5, commit, push.
-5. **Logging, only if he asks.** He asked to see the workout, not to record it.
-   Ticking sets off needs input and a write path and was never requested. Do not
-   build it unprompted.
+He set the phases himself:
+
+**Phase 1, get the program on the phone and the Pi.** Done except for his two
+physical steps: add the picker to his phone home screen, and power the Pi on at
+home where it joins `Corona 2.4G` by itself.
+
+**Phase 2, actually build the app.** The editor, section 6. This is where the
+work goes next.
+
+**Phase 3, polish.** Not before Phase 2. He has said so twice.
+
+Not in any phase until he asks: logging. He asked to see the workout, not to
+record it. Ticking sets off needs input and a write path and has never been
+requested.
 
 ---
 

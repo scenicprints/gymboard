@@ -1,0 +1,44 @@
+#!/bin/sh
+# ─────────────────────────────────────────────────────────────────────
+# GYMBOARD KIOSK
+#
+# This Pi does one thing. It comes up showing the board and never leaves.
+# No desktop, no window manager, no cursor: cage is a compositor that
+# runs exactly one full screen client, and if that client dies systemd
+# starts the whole thing again.
+# ─────────────────────────────────────────────────────────────────────
+
+URL="https://scenicprints.github.io/gymboard/tv.html"
+PROFILE="$HOME/.gymboard-chromium"
+
+# After a power cut Chromium offers to restore pages. Nobody is standing
+# at the TV to dismiss that, so the exit state is cleaned before launch.
+PREFS="$PROFILE/Default/Preferences"
+if [ -f "$PREFS" ]; then
+  sed -i 's/"exit_type":"[^"]*"/"exit_type":"Normal"/; s/"exited_cleanly":false/"exited_cleanly":true/' "$PREFS"
+fi
+
+# Give the network a chance on a cold boot, but never hold the board
+# hostage to it. Once the page has been seen once its service worker can
+# render from cache, and the board falls back to the week on its own.
+i=0
+while [ "$i" -lt 30 ]; do
+  curl -s -m 4 -o /dev/null "$URL" && break
+  i=$((i + 1))
+  sleep 2
+done
+
+exec cage -d -- chromium \
+  --kiosk "$URL" \
+  --user-data-dir="$PROFILE" \
+  --ozone-platform=wayland \
+  --noerrdialogs \
+  --no-first-run \
+  --disable-infobars \
+  --disable-session-crashed-bubble \
+  --disable-features=Translate,TranslateUI \
+  --disable-pinch \
+  --overscroll-history-navigation=0 \
+  --hide-scrollbars \
+  --check-for-update-interval=31536000 \
+  --password-store=basic

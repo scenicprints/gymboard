@@ -1,0 +1,26 @@
+[Unit]
+Description=Gymboard, the only thing this Pi does
+After=network-online.target seatd.service
+Wants=network-online.target
+Requires=seatd.service
+
+[Service]
+Type=simple
+User=jkevin
+Environment=HOME=/home/jkevin
+# Its own runtime dir, so the board does not depend on a login session
+# existing. systemd creates and cleans this up.
+RuntimeDirectory=gymboard
+RuntimeDirectoryMode=0700
+Environment=XDG_RUNTIME_DIR=/run/gymboard
+# This board has no working USB, so it has no input devices at all.
+# wlroots refuses to start without one unless it is told not to look.
+Environment=WLR_LIBINPUT_NO_DEVICES=1
+ExecStart=/usr/local/bin/gymboard-kiosk
+Restart=always
+RestartSec=5
+# A board nobody is standing at has to survive its own browser dying.
+StartLimitBurst=0
+
+[Install]
+WantedBy=multi-user.target
