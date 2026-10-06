@@ -107,16 +107,17 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "glute-bridge",
-            "reps": 25
-          },
-          {
             "movement": "split-squat",
             "reps": 20,
             "note": "10 per side"
           },
           {
             "movement": "donkey-kick",
+            "reps": 30,
+            "note": "15 per side"
+          },
+          {
+            "movement": "fire-hydrant",
             "reps": 30,
             "note": "15 per side"
           }
@@ -210,13 +211,14 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "glute-bridge",
-            "reps": 25
+            "movement": "donkey-kick",
+            "reps": 30,
+            "note": "15 per side"
           },
           {
-            "movement": "split-squat",
-            "reps": 20,
-            "note": "10 per side"
+            "movement": "fire-hydrant",
+            "reps": 30,
+            "note": "15 per side"
           }
         ]
       }
@@ -288,13 +290,13 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "glute-bridge",
-            "reps": 25
+            "movement": "fire-hydrant",
+            "reps": 30,
+            "note": "15 per side"
           },
           {
-            "movement": "split-squat",
-            "reps": 20,
-            "note": "10 per side"
+            "movement": "glute-bridge",
+            "reps": 25
           }
         ]
       }
@@ -344,6 +346,11 @@
           },
           {
             "movement": "donkey-kick",
+            "reps": 30,
+            "note": "15 per side"
+          },
+          {
+            "movement": "fire-hydrant",
             "reps": 30,
             "note": "15 per side"
           }
@@ -433,15 +440,16 @@
             "note": "hard, out and back"
           },
           {
-            "movement": "squat",
-            "reps": 20
+            "movement": "lateral-lunge",
+            "reps": 20,
+            "note": "10 per side"
           },
           {
-            "movement": "push-up",
-            "reps": 15
+            "movement": "pike-push-up",
+            "reps": 12
           },
           {
-            "movement": "mountain-climber",
+            "movement": "plank-jack",
             "reps": 30
           }
         ]
@@ -482,10 +490,6 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "hip-thrust",
-            "reps": 20
-          },
-          {
             "movement": "split-squat",
             "reps": 24,
             "note": "12 per side"
@@ -494,6 +498,11 @@
             "movement": "curtsy-lunge",
             "reps": 20,
             "note": "10 per side"
+          },
+          {
+            "movement": "donkey-kick",
+            "reps": 36,
+            "note": "18 per side"
           }
         ]
       },
@@ -507,21 +516,21 @@
             "note": "down the street and back, steady"
           },
           {
-            "movement": "squat",
-            "reps": 25
+            "movement": "split-squat",
+            "reps": 24,
+            "note": "12 per side"
           },
           {
-            "movement": "push-up",
-            "reps": 15
+            "movement": "inchworm",
+            "reps": 12
           },
           {
-            "movement": "reverse-lunge",
-            "reps": 20,
-            "note": "10 per side"
+            "movement": "calf-raise",
+            "reps": 40
           },
           {
-            "movement": "sit-up",
-            "reps": 25
+            "movement": "russian-twist",
+            "reps": 40
           }
         ]
       },
@@ -576,7 +585,7 @@
           {
             "movement": "run",
             "distance_m": 100,
-            "note": "hard, out and back"
+            "note": "all out, out and back"
           }
         ]
       },
@@ -585,13 +594,14 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "hip-thrust",
-            "reps": 20
+            "movement": "curtsy-lunge",
+            "reps": 20,
+            "note": "10 per side"
           },
           {
-            "movement": "split-squat",
-            "reps": 24,
-            "note": "12 per side"
+            "movement": "donkey-kick",
+            "reps": 36,
+            "note": "18 per side"
           }
         ]
       }
@@ -663,13 +673,13 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "hip-thrust",
-            "reps": 20
+            "movement": "donkey-kick",
+            "reps": 36,
+            "note": "18 per side"
           },
           {
-            "movement": "split-squat",
-            "reps": 24,
-            "note": "12 per side"
+            "movement": "hip-thrust",
+            "reps": 20
           }
         ]
       }
@@ -721,6 +731,11 @@
             "movement": "curtsy-lunge",
             "reps": 20,
             "note": "10 per side"
+          },
+          {
+            "movement": "donkey-kick",
+            "reps": 36,
+            "note": "18 per side"
           }
         ]
       },
@@ -733,16 +748,19 @@
             "seconds": 60
           },
           {
-            "movement": "side-plank",
-            "seconds": 30,
-            "note": "per side"
+            "movement": "superman-hold",
+            "seconds": 30
           },
           {
             "movement": "wall-sit",
-            "seconds": 60
+            "seconds": 90
           },
           {
-            "movement": "hollow-hold",
+            "movement": "dead-bug",
+            "seconds": 30
+          },
+          {
+            "movement": "flutter-kick",
             "seconds": 30
           }
         ]
@@ -817,11 +835,7 @@
             "reps": 20
           },
           {
-            "movement": "mountain-climber",
-            "reps": 30
-          },
-          {
-            "movement": "sit-up",
+            "movement": "v-up",
             "reps": 20
           }
         ]
@@ -862,11 +876,6 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "single-leg-glute-bridge",
-            "reps": 20,
-            "note": "10 per side"
-          },
-          {
             "movement": "step-up",
             "reps": 20,
             "note": "10 per side"
@@ -874,6 +883,11 @@
           {
             "movement": "hip-thrust",
             "reps": 25
+          },
+          {
+            "movement": "fire-hydrant",
+            "reps": 36,
+            "note": "18 per side"
           }
         ]
       },
@@ -888,27 +902,27 @@
           },
           {
             "movement": "squat",
-            "reps": 25
+            "reps": 30
           },
           {
             "movement": "push-up",
             "reps": 20
           },
           {
-            "movement": "reverse-lunge",
-            "reps": 20,
-            "note": "10 per side"
+            "movement": "lateral-lunge",
+            "reps": 24,
+            "note": "12 per side"
           },
           {
-            "movement": "sit-up",
-            "reps": 25
+            "movement": "flutter-kick",
+            "reps": 40
           }
         ]
       },
       {
         "movements": [
           {
-            "movement": "plank",
+            "movement": "hollow-hold",
             "seconds": 60
           }
         ]
@@ -916,7 +930,7 @@
     ]
   },
   {
-    "name": "6 sprints",
+    "name": "8 sprints",
     "level": 3,
     "order": 3,
     "warmup": [
@@ -950,7 +964,7 @@
     ],
     "circuits": [
       {
-        "repeat": 6,
+        "repeat": 8,
         "rest_after_seconds": 150,
         "movements": [
           {
@@ -965,14 +979,28 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "single-leg-glute-bridge",
+            "movement": "skater-jump",
             "reps": 20,
             "note": "10 per side"
           },
           {
-            "movement": "step-up",
-            "reps": 20,
-            "note": "10 per side"
+            "movement": "broad-jump",
+            "reps": 10
+          }
+        ]
+      },
+      {
+        "repeat": 2,
+        "rest_after_seconds": 60,
+        "movements": [
+          {
+            "movement": "hip-thrust",
+            "reps": 25
+          },
+          {
+            "movement": "fire-hydrant",
+            "reps": 36,
+            "note": "18 per side"
           }
         ]
       }
@@ -1044,12 +1072,26 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "single-leg-glute-bridge",
-            "reps": 20,
-            "note": "10 per side"
+            "movement": "flutter-kick",
+            "reps": 40
           },
           {
-            "movement": "step-up",
+            "movement": "russian-twist",
+            "reps": 40
+          }
+        ]
+      },
+      {
+        "repeat": 2,
+        "rest_after_seconds": 60,
+        "movements": [
+          {
+            "movement": "fire-hydrant",
+            "reps": 36,
+            "note": "18 per side"
+          },
+          {
+            "movement": "single-leg-glute-bridge",
             "reps": 20,
             "note": "10 per side"
           }
@@ -1103,6 +1145,11 @@
           {
             "movement": "hip-thrust",
             "reps": 25
+          },
+          {
+            "movement": "fire-hydrant",
+            "reps": 36,
+            "note": "18 per side"
           }
         ]
       },
@@ -1116,7 +1163,7 @@
           },
           {
             "movement": "side-plank",
-            "seconds": 30,
+            "seconds": 60,
             "note": "per side"
           },
           {
@@ -1125,11 +1172,7 @@
           },
           {
             "movement": "hollow-hold",
-            "seconds": 30
-          },
-          {
-            "movement": "dead-bug",
-            "seconds": 30
+            "seconds": 60
           }
         ]
       }
@@ -1175,8 +1218,8 @@
           },
           {
             "movement": "split-squat",
-            "reps": 24,
-            "note": "12 per side"
+            "reps": 28,
+            "note": "14 per side"
           },
           {
             "movement": "hip-thrust",
@@ -1194,21 +1237,16 @@
             "note": "down the street and back, hard"
           },
           {
-            "movement": "step-up",
-            "reps": 20,
-            "note": "10 per side"
-          },
-          {
-            "movement": "push-up",
+            "movement": "jump-squat",
             "reps": 20
           },
           {
-            "movement": "mountain-climber",
+            "movement": "shoulder-tap",
             "reps": 30
           },
           {
-            "movement": "sit-up",
-            "reps": 20
+            "movement": "bicycle-crunch",
+            "reps": 40
           }
         ]
       }
@@ -1248,18 +1286,18 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "single-leg-glute-bridge",
-            "reps": 24,
-            "note": "12 per side"
-          },
-          {
             "movement": "split-squat",
-            "reps": 24,
-            "note": "12 per side"
+            "reps": 28,
+            "note": "14 per side"
           },
           {
             "movement": "hip-thrust",
             "reps": 30
+          },
+          {
+            "movement": "curtsy-lunge",
+            "reps": 24,
+            "note": "12 per side"
           }
         ]
       },
@@ -1273,20 +1311,21 @@
             "note": "steady, out and back"
           },
           {
-            "movement": "squat",
-            "reps": 25
+            "movement": "step-up",
+            "reps": 30,
+            "note": "15 per side"
           },
           {
-            "movement": "push-up",
-            "reps": 20
+            "movement": "pike-push-up",
+            "reps": 15
           },
           {
-            "movement": "reverse-lunge",
-            "reps": 20,
-            "note": "10 per side"
+            "movement": "curtsy-lunge",
+            "reps": 24,
+            "note": "12 per side"
           },
           {
-            "movement": "sit-up",
+            "movement": "v-up",
             "reps": 25
           }
         ]
@@ -1302,7 +1341,7 @@
     ]
   },
   {
-    "name": "8 sprints",
+    "name": "4 sprints",
     "level": 4,
     "order": 3,
     "warmup": [
@@ -1336,13 +1375,13 @@
     ],
     "circuits": [
       {
-        "repeat": 8,
-        "rest_after_seconds": 150,
+        "repeat": 4,
+        "rest_after_seconds": 180,
         "movements": [
           {
             "movement": "run",
-            "distance_m": 100,
-            "note": "all out, out and back"
+            "distance_m": 400,
+            "note": "down the street and back, all out"
           }
         ]
       },
@@ -1351,12 +1390,25 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "single-leg-glute-bridge",
-            "reps": 24,
-            "note": "12 per side"
+            "movement": "tuck-jump",
+            "reps": 12
           },
           {
-            "movement": "split-squat",
+            "movement": "jump-squat",
+            "reps": 20
+          }
+        ]
+      },
+      {
+        "repeat": 2,
+        "rest_after_seconds": 60,
+        "movements": [
+          {
+            "movement": "hip-thrust",
+            "reps": 30
+          },
+          {
+            "movement": "curtsy-lunge",
             "reps": 24,
             "note": "12 per side"
           }
@@ -1451,12 +1503,26 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "single-leg-glute-bridge",
+            "movement": "v-up",
+            "reps": 25
+          },
+          {
+            "movement": "bicycle-crunch",
+            "reps": 40
+          }
+        ]
+      },
+      {
+        "repeat": 2,
+        "rest_after_seconds": 60,
+        "movements": [
+          {
+            "movement": "curtsy-lunge",
             "reps": 24,
             "note": "12 per side"
           },
           {
-            "movement": "split-squat",
+            "movement": "single-leg-glute-bridge",
             "reps": 24,
             "note": "12 per side"
           }
@@ -1504,8 +1570,8 @@
           },
           {
             "movement": "split-squat",
-            "reps": 24,
-            "note": "12 per side"
+            "reps": 28,
+            "note": "14 per side"
           },
           {
             "movement": "hip-thrust",
@@ -1527,21 +1593,21 @@
             "seconds": 90
           },
           {
-            "movement": "side-plank",
-            "seconds": 60,
-            "note": "per side"
-          },
-          {
-            "movement": "wall-sit",
-            "seconds": 90
-          },
-          {
-            "movement": "hollow-hold",
+            "movement": "superman-hold",
             "seconds": 60
           },
           {
+            "movement": "wall-sit",
+            "seconds": 120
+          },
+          {
             "movement": "dead-bug",
-            "seconds": 30
+            "seconds": 60
+          },
+          {
+            "movement": "side-plank",
+            "seconds": 30,
+            "note": "per side"
           }
         ]
       }
@@ -1592,7 +1658,7 @@
           },
           {
             "movement": "hip-thrust",
-            "reps": 30
+            "reps": 35
           }
         ]
       },
@@ -1606,21 +1672,17 @@
             "note": "down the street and back, hard"
           },
           {
-            "movement": "jump-squat",
-            "reps": 15
+            "movement": "jumping-lunge",
+            "reps": 24,
+            "note": "12 per side"
           },
           {
             "movement": "push-up",
             "reps": 25
           },
           {
-            "movement": "jumping-lunge",
-            "reps": 20,
-            "note": "10 per side"
-          },
-          {
             "movement": "burpee",
-            "reps": 10
+            "reps": 12
           }
         ]
       }
@@ -1660,18 +1722,18 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "single-leg-glute-bridge",
-            "reps": 30,
-            "note": "15 per side"
-          },
-          {
             "movement": "split-squat",
             "reps": 30,
             "note": "15 per side"
           },
           {
             "movement": "hip-thrust",
-            "reps": 30
+            "reps": 35
+          },
+          {
+            "movement": "step-up",
+            "reps": 30,
+            "note": "15 per side"
           }
         ]
       },
@@ -1686,27 +1748,27 @@
           },
           {
             "movement": "squat",
-            "reps": 30
+            "reps": 35
           },
           {
             "movement": "push-up",
             "reps": 25
           },
           {
-            "movement": "reverse-lunge",
+            "movement": "jumping-lunge",
             "reps": 24,
             "note": "12 per side"
           },
           {
             "movement": "sit-up",
-            "reps": 30
+            "reps": 35
           }
         ]
       },
       {
         "movements": [
           {
-            "movement": "plank",
+            "movement": "superman-hold",
             "seconds": 90
           }
         ]
@@ -1763,12 +1825,26 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "single-leg-glute-bridge",
-            "reps": 30,
-            "note": "15 per side"
+            "movement": "broad-jump",
+            "reps": 16
           },
           {
-            "movement": "split-squat",
+            "movement": "skater-jump",
+            "reps": 30,
+            "note": "15 per side"
+          }
+        ]
+      },
+      {
+        "repeat": 2,
+        "rest_after_seconds": 60,
+        "movements": [
+          {
+            "movement": "hip-thrust",
+            "reps": 35
+          },
+          {
+            "movement": "step-up",
             "reps": 30,
             "note": "15 per side"
           }
@@ -1863,12 +1939,26 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "single-leg-glute-bridge",
+            "movement": "hollow-hold",
+            "seconds": 60
+          },
+          {
+            "movement": "flutter-kick",
+            "reps": 50
+          }
+        ]
+      },
+      {
+        "repeat": 2,
+        "rest_after_seconds": 60,
+        "movements": [
+          {
+            "movement": "step-up",
             "reps": 30,
             "note": "15 per side"
           },
           {
-            "movement": "split-squat",
+            "movement": "single-leg-glute-bridge",
             "reps": 30,
             "note": "15 per side"
           }
@@ -1921,7 +2011,7 @@
           },
           {
             "movement": "hip-thrust",
-            "reps": 30
+            "reps": 35
           },
           {
             "movement": "step-up",
@@ -1949,7 +2039,7 @@
           },
           {
             "movement": "hollow-hold",
-            "seconds": 60
+            "seconds": 90
           },
           {
             "movement": "dead-bug",

@@ -14,9 +14,9 @@
 // when you want to cut it short.
 // ─────────────────────────────────────────────────────────────────────
 
-import { setSession, watchSession, recordWorkout, getDone } from './store.js?v=0.2.0';
+import { setSession, watchSession, recordWorkout, getDone } from './store.js?v=0.2.1';
 
-const VERSION = '0.2.0';
+const VERSION = '0.2.1';
 const root = document.getElementById('root');
 const toastEl = document.getElementById('toast');
 const esc = (s) => String(s).replace(/[&<>"]/g,
@@ -25,9 +25,19 @@ const esc = (s) => String(s).replace(/[&<>"]/g,
 let session = null;
 let showRundown = false;
 let done = [];   // routine ids already finished
+let chosen = null;  // a routine picked by hand, overriding the next one
+let showList = false;
 
 const routines = () => (window.ROUTINES || []).map(window.expandRoutine);
-const upNext = () => window.expandRoutine(window.nextRoutine(done));
+const upNext = () => {
+  if (chosen) {
+    const r = (window.ROUTINES || []).find((x) => x.id === chosen);
+    if (r) return window.expandRoutine(r);
+  }
+  return window.expandRoutine(window.nextRoutine(done));
+};
+const allRoutines = () => (window.ROUTINES || []).slice()
+  .sort((a, b) => (a.level - b.level) || (a.order - b.order));
 const routineById = (id) => routines().find((r) => r.id === id) || routines()[0];
 
 const mmss = (ms) => {
@@ -142,9 +152,15 @@ function render() {
       ${showRundown ? rundown(r) : ''}
       <button class="go" id="start">Start</button>
       <button class="ghost" id="peek">${showRundown ? 'Hide the rundown' : 'See the rundown'}</button>
+      <button class="ghost" id="pick">${showList ? 'Close the list' : 'Pick a different routine'}</button>
+      ${showList ? routineList(r) : ''}
       <div class="foot"><span>v${VERSION}</span><button id="upd">Check for updates</button></div>`;
     bind('#start', start);
     bind('#peek', () => { showRundown = !showRundown; render(); });
+    bind('#pick', () => { showList = !showList; render(); });
+    root.querySelectorAll('[data-rid]').forEach((b) => b.addEventListener('click', () => {
+      chosen = b.dataset.rid; showList = false; showRundown = false; render();
+    }));
     bind('#upd', checkForUpdate);
     return;
   }
@@ -204,6 +220,22 @@ function render() {
       <button class="go" id="home">Home</button>`;
     bind('#home', goHome);
   }
+}
+
+/// Every routine, in order, so a day one or a repeat is one tap away.
+/// Finished ones are marked rather than hidden: you are allowed to redo one.
+function routineList(current) {
+  let level = 0;
+  return '<div class="rundown">' + allRoutines().map((r) => {
+    const head = r.level !== level ? (level = r.level,
+      `<div class="kicker" style="margin:18px 0 6px">LEVEL ${r.level}</div>`) : '';
+    const isNow = r.id === current.id;
+    const isDone = done.indexOf(r.id) >= 0;
+    return head + `<button class="row${isNow ? ' on' : ''}" data-rid="${esc(r.id)}">
+        <b>${r.order}</b> ${esc(r.name)}
+        <i>${isDone ? 'done' : isNow ? 'next' : ''}</i>
+      </button>`;
+  }).join('') + '</div>';
 }
 
 function rundown(r) {
