@@ -1,44 +1,40 @@
 // ─────────────────────────────────────────────────────────────────────
 // THE PHONE
 //
-// The controller. One big button at a time, because it is being used by
-// somebody out of breath who is not going to read anything.
+// Home is the programme: five levels, the routines inside each one, and
+// what you have finished ticked off. You pick what you are doing, which
+// is usually the next one but does not have to be.
 //
-//   next routine  ->  start
-//   warm-up       ->  warm-up done
-//   circuit       ->  end circuit
-//   rest          ->  start circuit, if you do not want to wait
+// Once a routine is running the phone becomes one big button at a time,
+// because it is being read by somebody out of breath.
+//
+//   warm-up   ->  warm-up done
+//   circuit   ->  end circuit
+//   rest      ->  start circuit, only if you do not want to wait
 //
 // Rest running out needs no tap. It counts down, gives five seconds of
-// countdown, and the next circuit is live. The button is only there for
-// when you want to cut it short.
+// countdown, and the next circuit is live.
 // ─────────────────────────────────────────────────────────────────────
 
-import { setSession, watchSession, recordWorkout, getDone } from './store.js?v=0.2.1';
+import { setSession, watchSession, recordWorkout, getDone } from './store.js?v=0.2.2';
 
-const VERSION = '0.2.1';
+const VERSION = '0.2.2';
 const root = document.getElementById('root');
 const toastEl = document.getElementById('toast');
 const esc = (s) => String(s).replace(/[&<>"]/g,
   (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 let session = null;
-let showRundown = false;
-let done = [];   // routine ids already finished
-let chosen = null;  // a routine picked by hand, overriding the next one
-let showList = false;
+let done = [];            // routine ids already finished
+let openId = null;        // the routine being looked at, before it is started
+let openLevels = null;    // which levels are expanded; null until progress is known
 
-const routines = () => (window.ROUTINES || []).map(window.expandRoutine);
-const upNext = () => {
-  if (chosen) {
-    const r = (window.ROUTINES || []).find((x) => x.id === chosen);
-    if (r) return window.expandRoutine(r);
-  }
-  return window.expandRoutine(window.nextRoutine(done));
-};
-const allRoutines = () => (window.ROUTINES || []).slice()
+const all = () => (window.ROUTINES || []).slice()
   .sort((a, b) => (a.level - b.level) || (a.order - b.order));
-const routineById = (id) => routines().find((r) => r.id === id) || routines()[0];
+const byId = (id) => (window.ROUTINES || []).find((r) => r.id === id);
+const expand = (r) => window.expandRoutine(r);
+const nextUp = () => window.nextRoutine(done);
+const levels = () => [...new Set(all().map((r) => r.level))];
 
 const mmss = (ms) => {
   const s = Math.max(0, Math.floor(ms / 1000));
@@ -47,6 +43,15 @@ const mmss = (ms) => {
 const label = (m) => m.reps != null ? String(m.reps)
   : m.distance_m != null ? m.distance_m + 'm'
   : m.seconds != null ? mmss(m.seconds * 1000) : '';
+const nice = (s) => esc(String(s).replace(/-/g, ' '));
+
+const totals = (r) => {
+  const e = expand(r);
+  return {
+    circuits: e.circuits.length,
+    reps: e.circuits.reduce((t, c) => t + c.movements.reduce((u, m) => u + (m.reps || 0), 0), 0),
+  };
+};
 
 let toastTimer = null;
 function toast(msg) {
@@ -56,13 +61,13 @@ function toast(msg) {
   toastTimer = setTimeout(() => toastEl.classList.remove('up'), 1600);
 }
 
-/// Same derivation the TV uses. Rest expiring is not an event, it is
-/// just what the clock says, so both ends agree without talking.
+/// Same derivation the TV uses. Rest expiring is not an event, it is just
+/// what the clock says, so both ends agree without talking to each other.
 function live(now) {
   if (!session || !session.phase) return { phase: 'idle' };
   if (session.phase === 'resting' && now >= session.restEndsAt) {
-    return { ...session, phase: 'running', circuit: session.nextCircuit,
-             circuitStartedAt: session.restEndsAt };
+    return Object.assign({}, session, { phase: 'running', circuit: session.nextCircuit,
+      circuitStartedAt: session.restEndsAt });
   }
   return session;
 }
@@ -72,39 +77,34 @@ async function write(state) {
 }
 
 // ── the moves ────────────────────────────────────────────────────────
-function start() {
-  const r = upNext();
-  const hasWarmup = r.warmup && r.warmup.length;
-  if (hasWarmup) return write({ routineId: r.id, phase: 'warmup' });
+function startRoutine(id) {
+  const r = expand(byId(id));
+  if (r.warmup && r.warmup.length) return write({ routineId: r.id, phase: 'warmup' });
   const now = Date.now();
   return write({ routineId: r.id, phase: 'running', circuit: 0,
                  startedAt: now, circuitStartedAt: now, circuitMs: [] });
 }
 
 function warmupDone() {
-  const r = routineById(session.routineId);
   const now = Date.now();
-  return write({ routineId: r.id, phase: 'running', circuit: 0,
+  return write({ routineId: session.routineId, phase: 'running', circuit: 0,
                  startedAt: now, circuitStartedAt: now, circuitMs: [] });
 }
 
 async function endCircuit() {
   const now = Date.now();
   const s = live(now);
-  const r = routineById(s.routineId);
+  const r = expand(byId(s.routineId));
   const c = r.circuits[s.circuit];
   const circuitMs = (s.circuitMs || []).slice();
   circuitMs[s.circuit] = now - s.circuitStartedAt;
 
-  const isLast = s.circuit >= r.circuits.length - 1;
-  if (isLast) {
-    const reps = r.circuits.reduce((t, cc) =>
-      t + cc.movements.reduce((u, m) => u + (m.reps || 0), 0), 0);
+  if (s.circuit >= r.circuits.length - 1) {
+    const reps = totals(byId(s.routineId)).reps;
     const totalMs = now - s.startedAt;
-    await write({ routineId: r.id, phase: 'done', circuitMs,
-                  totalMs, reps, finishedAt: now });
+    await write({ routineId: r.id, phase: 'done', circuitMs, totalMs, reps, finishedAt: now });
     recordWorkout({ routineId: r.id, ms: totalMs, reps, circuits: r.circuits.length })
-      .then(() => { done = done.concat([r.id]); })
+      .then(() => { if (done.indexOf(r.id) < 0) done = done.concat([r.id]); })
       .catch(() => { /* the stats can miss one rather than block the board */ });
     return;
   }
@@ -120,59 +120,110 @@ async function endCircuit() {
 }
 
 function skipRest() {
-  const now = Date.now();
-  const s = session;
-  return write({ routineId: s.routineId, phase: 'running', circuit: s.nextCircuit,
-                 startedAt: s.startedAt, circuitStartedAt: now,
-                 circuitMs: s.circuitMs || [] });
+  return write({ routineId: session.routineId, phase: 'running',
+                 circuit: session.nextCircuit, startedAt: session.startedAt,
+                 circuitStartedAt: Date.now(), circuitMs: session.circuitMs || [] });
 }
 
-const goHome = () => write({ phase: 'idle' });
+const goHome = () => { openId = null; return write({ phase: 'idle' }); };
 
 function abandon() {
   if (!confirm('Stop this workout? It will not be recorded.')) return;
   goHome();
 }
 
-// ── screens ──────────────────────────────────────────────────────────
+// ── home: the programme ──────────────────────────────────────────────
+function renderHome() {
+  const next = nextUp();
+  if (openLevels === null) openLevels = new Set([next.level]);
+
+  const body = levels().map((lv) => {
+    const rs = all().filter((r) => r.level === lv);
+    const finished = rs.filter((r) => done.indexOf(r.id) >= 0).length;
+    const open = openLevels.has(lv);
+    const rows = !open ? '' : rs.map((r) => {
+      const isDone = done.indexOf(r.id) >= 0;
+      const isNext = r.id === next.id;
+      const t = totals(r);
+      return `<button class="row${isDone ? ' done' : ''}${isNext ? ' next' : ''}" data-rid="${esc(r.id)}">
+          <span class="tick">${isDone ? '&check;' : r.order}</span>
+          <span class="rname">${esc(r.name)}
+            <em>${t.circuits} circuits &middot; ${t.reps} reps</em></span>
+          ${isNext ? '<i>next</i>' : ''}
+        </button>`;
+    }).join('');
+    return `<div class="lvlblk">
+        <button class="lvl${open ? ' open' : ''}" data-lvl="${lv}">
+          <span>Level ${lv}</span><em>${finished} of ${rs.length}</em>
+        </button>
+        ${rows}
+      </div>`;
+  }).join('');
+
+  root.innerHTML = `
+    <header>
+      <div class="kicker">GYMBOARD</div>
+      <h1>${done.length} of ${all().length}</h1>
+      <div class="sub">routines finished</div>
+    </header>
+    ${body}
+    <div class="foot"><span>v${VERSION}</span><button id="upd">Check for updates</button></div>`;
+
+  root.querySelectorAll('[data-lvl]').forEach((b) => b.addEventListener('click', () => {
+    const lv = Number(b.dataset.lvl);
+    if (openLevels.has(lv)) openLevels.delete(lv); else openLevels.add(lv);
+    render();
+  }));
+  root.querySelectorAll('[data-rid]').forEach((b) => b.addEventListener('click', () => {
+    openId = b.dataset.rid;
+    render();
+  }));
+  bind('#upd', checkForUpdate);
+}
+
+// ── a routine, before you commit to it ───────────────────────────────
+function renderRoutine() {
+  const raw = byId(openId);
+  const r = expand(raw);
+  const t = totals(raw);
+  const isDone = done.indexOf(r.id) >= 0;
+  root.innerHTML = `
+    <button class="back" id="back">&larr; All routines</button>
+    <header>
+      <div class="kicker">LEVEL ${r.level} &middot; ROUTINE ${r.order}${isDone ? ' &middot; DONE' : ''}</div>
+      <h1>${esc(r.name)}</h1>
+      <div class="sub">${t.circuits} circuits &middot; ${t.reps} reps</div>
+    </header>
+    ${r.warmup && r.warmup.length ? `<div class="blk">
+      <div class="kicker">WARM-UP</div>
+      <ul class="list">${r.warmup.map((m) =>
+        `<li><b>${label(m)}</b> ${nice(m.movement)}${m.note ? `<i>${esc(m.note)}</i>` : ''}</li>`).join('')}</ul>
+    </div>` : ''}
+    ${r.circuits.map((c, i) => `<div class="blk">
+      <div class="kicker">CIRCUIT ${i + 1}${c.rest_after_seconds
+        ? ' &middot; ' + c.rest_after_seconds + 's REST AFTER' : ''}</div>
+      <ul class="list">${c.movements.map((m) =>
+        `<li><b>${label(m)}</b> ${nice(m.movement)}${m.note ? `<i>${esc(m.note)}</i>` : ''}</li>`).join('')}</ul>
+    </div>`).join('')}
+    <button class="go" id="start">${isDone ? 'Do it again' : 'Start'}</button>`;
+  bind('#back', () => { openId = null; render(); });
+  bind('#start', () => startRoutine(r.id));
+}
+
+// ── the workout ──────────────────────────────────────────────────────
 function render() {
   const now = Date.now();
   const s = live(now);
 
-  if (s.phase === 'idle') {
-    const r = upNext();
-    const reps = r.circuits.reduce((t, c) =>
-      t + c.movements.reduce((u, m) => u + (m.reps || 0), 0), 0);
-    root.innerHTML = `
-      <header>
-        <div class="kicker">LEVEL ${r.level} &middot; ROUTINE ${r.order}</div>
-        <h1>${esc(r.name)}</h1>
-        <div class="sub">${r.circuits.length} circuits &middot; ${reps} reps</div>
-      </header>
-      ${showRundown ? rundown(r) : ''}
-      <button class="go" id="start">Start</button>
-      <button class="ghost" id="peek">${showRundown ? 'Hide the rundown' : 'See the rundown'}</button>
-      <button class="ghost" id="pick">${showList ? 'Close the list' : 'Pick a different routine'}</button>
-      ${showList ? routineList(r) : ''}
-      <div class="foot"><span>v${VERSION}</span><button id="upd">Check for updates</button></div>`;
-    bind('#start', start);
-    bind('#peek', () => { showRundown = !showRundown; render(); });
-    bind('#pick', () => { showList = !showList; render(); });
-    root.querySelectorAll('[data-rid]').forEach((b) => b.addEventListener('click', () => {
-      chosen = b.dataset.rid; showList = false; showRundown = false; render();
-    }));
-    bind('#upd', checkForUpdate);
-    return;
-  }
+  if (s.phase === 'idle') return openId ? renderRoutine() : renderHome();
 
-  const r = routineById(s.routineId);
+  const r = expand(byId(s.routineId));
 
   if (s.phase === 'warmup') {
     root.innerHTML = `
       <header><div class="kicker">WARM-UP</div><h1>${esc(r.name)}</h1></header>
       <ul class="list">${(r.warmup || []).map((m) =>
-        `<li><b>${label(m)}</b> ${esc(m.movement.replace(/-/g, ' '))}
-         ${m.note ? `<i>${esc(m.note)}</i>` : ''}</li>`).join('')}</ul>
+        `<li><b>${label(m)}</b> ${nice(m.movement)}${m.note ? `<i>${esc(m.note)}</i>` : ''}</li>`).join('')}</ul>
       <button class="go" id="done">Warm-up done</button>
       <button class="quiet" id="stop">Stop</button>`;
     bind('#done', warmupDone);
@@ -188,8 +239,7 @@ function render() {
         <h1 id="clock">${mmss(now - s.startedAt)}</h1>
       </header>
       <ul class="list">${c.movements.map((m) =>
-        `<li><b>${label(m)}</b> ${esc(m.movement.replace(/-/g, ' '))}
-         ${m.note ? `<i>${esc(m.note)}</i>` : ''}</li>`).join('')}</ul>
+        `<li><b>${label(m)}</b> ${nice(m.movement)}${m.note ? `<i>${esc(m.note)}</i>` : ''}</li>`).join('')}</ul>
       <button class="go" id="end">End circuit</button>
       <button class="quiet" id="stop">Stop</button>`;
     bind('#end', endCircuit);
@@ -198,12 +248,11 @@ function render() {
   }
 
   if (s.phase === 'resting') {
-    const left = s.restEndsAt - now;
     root.innerHTML = `
-      <header><div class="kicker">REST</div><h1 id="clock">${mmss(left)}</h1></header>
+      <header><div class="kicker">REST</div><h1 id="clock">${mmss(s.restEndsAt - now)}</h1></header>
       <div class="sub">Circuit ${s.nextCircuit + 1} is next. It starts on its own.</div>
       <ul class="list">${r.circuits[s.nextCircuit].movements.map((m) =>
-        `<li><b>${label(m)}</b> ${esc(m.movement.replace(/-/g, ' '))}</li>`).join('')}</ul>
+        `<li><b>${label(m)}</b> ${nice(m.movement)}</li>`).join('')}</ul>
       <button class="go" id="skip">Start circuit now</button>
       <button class="quiet" id="stop">Stop</button>`;
     bind('#skip', skipRest);
@@ -217,38 +266,9 @@ function render() {
         <div class="sub">${s.reps || 0} reps &middot; ${(s.circuitMs || []).length} circuits</div></header>
       <ul class="list">${(s.circuitMs || []).map((ms, i) =>
         `<li><b>${mmss(ms)}</b> circuit ${i + 1}</li>`).join('')}</ul>
-      <button class="go" id="home">Home</button>`;
+      <button class="go" id="home">All routines</button>`;
     bind('#home', goHome);
   }
-}
-
-/// Every routine, in order, so a day one or a repeat is one tap away.
-/// Finished ones are marked rather than hidden: you are allowed to redo one.
-function routineList(current) {
-  let level = 0;
-  return '<div class="rundown">' + allRoutines().map((r) => {
-    const head = r.level !== level ? (level = r.level,
-      `<div class="kicker" style="margin:18px 0 6px">LEVEL ${r.level}</div>`) : '';
-    const isNow = r.id === current.id;
-    const isDone = done.indexOf(r.id) >= 0;
-    return head + `<button class="row${isNow ? ' on' : ''}" data-rid="${esc(r.id)}">
-        <b>${r.order}</b> ${esc(r.name)}
-        <i>${isDone ? 'done' : isNow ? 'next' : ''}</i>
-      </button>`;
-  }).join('') + '</div>';
-}
-
-function rundown(r) {
-  return `<div class="rundown">
-    ${r.warmup && r.warmup.length ? `<div class="blk"><div class="kicker">WARM-UP</div>
-      <ul class="list">${r.warmup.map((m) =>
-        `<li><b>${label(m)}</b> ${esc(m.movement.replace(/-/g, ' '))}</li>`).join('')}</ul></div>` : ''}
-    ${r.circuits.map((c, i) => `<div class="blk">
-      <div class="kicker">CIRCUIT ${i + 1}${c.rest_after_seconds
-        ? ' &middot; ' + c.rest_after_seconds + 's REST AFTER' : ''}</div>
-      <ul class="list">${c.movements.map((m) =>
-        `<li><b>${label(m)}</b> ${esc(m.movement.replace(/-/g, ' '))}</li>`).join('')}</ul>
-    </div>`).join('')}</div>`;
 }
 
 function bind(sel, fn) {
@@ -257,14 +277,13 @@ function bind(sel, fn) {
 }
 
 /// Only the clock moves between renders, so patch it rather than
-/// rebuilding the screen under someone's thumb.
+/// rebuilding the screen under somebody's thumb.
 setInterval(() => {
   const now = Date.now();
-  const s = live(now);
   const el = document.getElementById('clock');
-  if (!el) return;
-  if (s.phase === 'running') el.textContent = mmss(now - s.startedAt);
-  else if (s.phase === 'resting') {
+  if (!el || !session) return;
+  if (session.phase === 'running') el.textContent = mmss(now - session.startedAt);
+  else if (session.phase === 'resting') {
     if (now >= session.restEndsAt) render();
     else el.textContent = mmss(session.restEndsAt - now);
   }
@@ -291,12 +310,15 @@ async function checkForUpdate() {
     }
     btn.textContent = 'Up to date';
   } catch { btn.textContent = 'No connection'; }
-  setTimeout(() => { const b = root.querySelector('#upd'); if (b) b.textContent = 'Check for updates'; }, 2200);
+  setTimeout(() => {
+    const b = root.querySelector('#upd');
+    if (b) b.textContent = 'Check for updates';
+  }, 2200);
 }
 
 // ── go ───────────────────────────────────────────────────────────────
 render();
-getDone().then((d) => { done = d; render(); }).catch(() => { /* offer routine one */ });
+getDone().then((d) => { done = d; render(); }).catch(() => { /* offer level one */ });
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js')

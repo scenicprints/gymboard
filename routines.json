@@ -54,8 +54,8 @@
         "movements": [
           {
             "movement": "run",
-            "distance_m": 100,
-            "note": "hard, out and back"
+            "distance_m": 400,
+            "note": "down the street and back, hard"
           },
           {
             "movement": "squat",
@@ -117,9 +117,9 @@
             "note": "15 per side"
           },
           {
-            "movement": "fire-hydrant",
-            "reps": 30,
-            "note": "15 per side"
+            "movement": "single-leg-deadlift",
+            "reps": 20,
+            "note": "10 per side"
           }
         ]
       },
@@ -146,8 +146,8 @@
             "note": "10 per side"
           },
           {
-            "movement": "sit-up",
-            "reps": 25
+            "movement": "prone-swimmer",
+            "reps": 20
           }
         ]
       },
@@ -162,7 +162,7 @@
     ]
   },
   {
-    "name": "4 sprints",
+    "name": "6 strides",
     "level": 1,
     "order": 3,
     "warmup": [
@@ -196,13 +196,13 @@
     ],
     "circuits": [
       {
-        "repeat": 4,
-        "rest_after_seconds": 180,
+        "repeat": 6,
+        "rest_after_seconds": 120,
         "movements": [
           {
             "movement": "run",
             "distance_m": 100,
-            "note": "hard, out and back"
+            "note": "strides, not all out, out and back"
           }
         ]
       },
@@ -216,9 +216,9 @@
             "note": "15 per side"
           },
           {
-            "movement": "fire-hydrant",
-            "reps": 30,
-            "note": "15 per side"
+            "movement": "single-leg-deadlift",
+            "reps": 20,
+            "note": "10 per side"
           }
         ]
       }
@@ -290,9 +290,9 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "fire-hydrant",
-            "reps": 30,
-            "note": "15 per side"
+            "movement": "single-leg-deadlift",
+            "reps": 20,
+            "note": "10 per side"
           },
           {
             "movement": "glute-bridge",
@@ -303,9 +303,131 @@
     ]
   },
   {
-    "name": "3 rounds of holds",
+    "name": "Ladder down",
     "level": 1,
     "order": 5,
+    "warmup": [
+      {
+        "movement": "jog",
+        "distance_m": 400,
+        "note": "easy"
+      },
+      {
+        "movement": "squat",
+        "reps": 20
+      },
+      {
+        "movement": "push-up",
+        "reps": 10
+      },
+      {
+        "movement": "reverse-lunge",
+        "reps": 20,
+        "note": "10 per side"
+      },
+      {
+        "movement": "arm-circle",
+        "reps": 20
+      }
+    ],
+    "circuits": [
+      {
+        "repeat": 2,
+        "rest_after_seconds": 60,
+        "movements": [
+          {
+            "movement": "glute-bridge",
+            "reps": 25
+          },
+          {
+            "movement": "split-squat",
+            "reps": 20,
+            "note": "10 per side"
+          },
+          {
+            "movement": "donkey-kick",
+            "reps": 30,
+            "note": "15 per side"
+          }
+        ]
+      },
+      {
+        "rest_after_seconds": 120,
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "squat",
+            "reps": 20
+          },
+          {
+            "movement": "push-up",
+            "reps": 16
+          }
+        ]
+      },
+      {
+        "rest_after_seconds": 120,
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "squat",
+            "reps": 16
+          },
+          {
+            "movement": "push-up",
+            "reps": 12
+          }
+        ]
+      },
+      {
+        "rest_after_seconds": 120,
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "squat",
+            "reps": 12
+          },
+          {
+            "movement": "push-up",
+            "reps": 8
+          }
+        ]
+      },
+      {
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "squat",
+            "reps": 8
+          },
+          {
+            "movement": "push-up",
+            "reps": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "3 rounds of holds",
+    "level": 1,
+    "order": 6,
     "warmup": [
       {
         "movement": "jog",
@@ -336,10 +458,6 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "glute-bridge",
-            "reps": 25
-          },
-          {
             "movement": "split-squat",
             "reps": 20,
             "note": "10 per side"
@@ -350,9 +468,13 @@
             "note": "15 per side"
           },
           {
-            "movement": "fire-hydrant",
-            "reps": 30,
-            "note": "15 per side"
+            "movement": "single-leg-deadlift",
+            "reps": 20,
+            "note": "10 per side"
+          },
+          {
+            "movement": "glute-bridge",
+            "reps": 25
           }
         ]
       },
@@ -382,7 +504,7 @@
     ]
   },
   {
-    "name": "4 circuits for time",
+    "name": "3 circuits for time",
     "level": 2,
     "order": 1,
     "warmup": [
@@ -431,26 +553,30 @@
         ]
       },
       {
-        "repeat": 4,
+        "repeat": 3,
         "rest_after_seconds": 150,
         "movements": [
           {
             "movement": "run",
-            "distance_m": 100,
-            "note": "hard, out and back"
+            "distance_m": 400,
+            "note": "down the street and back, hard"
           },
           {
             "movement": "lateral-lunge",
-            "reps": 20,
-            "note": "10 per side"
+            "reps": 24,
+            "note": "12 per side"
           },
           {
             "movement": "pike-push-up",
+            "reps": 14
+          },
+          {
+            "movement": "table-row",
             "reps": 12
           },
           {
             "movement": "plank-jack",
-            "reps": 30
+            "reps": 36
           }
         ]
       }
@@ -500,9 +626,9 @@
             "note": "10 per side"
           },
           {
-            "movement": "donkey-kick",
-            "reps": 36,
-            "note": "18 per side"
+            "movement": "single-leg-deadlift",
+            "reps": 24,
+            "note": "12 per side"
           }
         ]
       },
@@ -525,8 +651,8 @@
             "reps": 12
           },
           {
-            "movement": "calf-raise",
-            "reps": 40
+            "movement": "table-row",
+            "reps": 10
           },
           {
             "movement": "russian-twist",
@@ -545,7 +671,7 @@
     ]
   },
   {
-    "name": "6 sprints",
+    "name": "8 sprints",
     "level": 2,
     "order": 3,
     "warmup": [
@@ -579,13 +705,13 @@
     ],
     "circuits": [
       {
-        "repeat": 6,
+        "repeat": 8,
         "rest_after_seconds": 180,
         "movements": [
           {
             "movement": "run",
             "distance_m": 100,
-            "note": "all out, out and back"
+            "note": "hard, out and back"
           }
         ]
       },
@@ -599,9 +725,9 @@
             "note": "10 per side"
           },
           {
-            "movement": "donkey-kick",
-            "reps": 36,
-            "note": "18 per side"
+            "movement": "single-leg-deadlift",
+            "reps": 24,
+            "note": "12 per side"
           }
         ]
       }
@@ -673,9 +799,9 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "donkey-kick",
-            "reps": 36,
-            "note": "18 per side"
+            "movement": "single-leg-deadlift",
+            "reps": 24,
+            "note": "12 per side"
           },
           {
             "movement": "hip-thrust",
@@ -686,9 +812,135 @@
     ]
   },
   {
-    "name": "4 rounds of holds",
+    "name": "Ladder down",
     "level": 2,
     "order": 5,
+    "warmup": [
+      {
+        "movement": "jog",
+        "distance_m": 400,
+        "note": "easy"
+      },
+      {
+        "movement": "squat",
+        "reps": 20
+      },
+      {
+        "movement": "push-up",
+        "reps": 10
+      },
+      {
+        "movement": "reverse-lunge",
+        "reps": 20,
+        "note": "10 per side"
+      },
+      {
+        "movement": "arm-circle",
+        "reps": 20
+      }
+    ],
+    "circuits": [
+      {
+        "repeat": 2,
+        "rest_after_seconds": 60,
+        "movements": [
+          {
+            "movement": "hip-thrust",
+            "reps": 20
+          },
+          {
+            "movement": "split-squat",
+            "reps": 24,
+            "note": "12 per side"
+          },
+          {
+            "movement": "curtsy-lunge",
+            "reps": 20,
+            "note": "10 per side"
+          }
+        ]
+      },
+      {
+        "rest_after_seconds": 120,
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "lateral-lunge",
+            "reps": 30,
+            "note": "15 per side"
+          },
+          {
+            "movement": "table-row",
+            "reps": 16
+          }
+        ]
+      },
+      {
+        "rest_after_seconds": 120,
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "lateral-lunge",
+            "reps": 24,
+            "note": "12 per side"
+          },
+          {
+            "movement": "table-row",
+            "reps": 12
+          }
+        ]
+      },
+      {
+        "rest_after_seconds": 120,
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "lateral-lunge",
+            "reps": 18,
+            "note": "9 per side"
+          },
+          {
+            "movement": "table-row",
+            "reps": 8
+          }
+        ]
+      },
+      {
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "lateral-lunge",
+            "reps": 12,
+            "note": "6 per side"
+          },
+          {
+            "movement": "table-row",
+            "reps": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "4 rounds of holds",
+    "level": 2,
+    "order": 6,
     "warmup": [
       {
         "movement": "jog",
@@ -719,10 +971,6 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "hip-thrust",
-            "reps": 20
-          },
-          {
             "movement": "split-squat",
             "reps": 24,
             "note": "12 per side"
@@ -733,9 +981,13 @@
             "note": "10 per side"
           },
           {
-            "movement": "donkey-kick",
-            "reps": 36,
-            "note": "18 per side"
+            "movement": "single-leg-deadlift",
+            "reps": 24,
+            "note": "12 per side"
+          },
+          {
+            "movement": "hip-thrust",
+            "reps": 20
           }
         ]
       },
@@ -760,7 +1012,7 @@
             "seconds": 30
           },
           {
-            "movement": "flutter-kick",
+            "movement": "prone-swimmer",
             "seconds": 30
           }
         ]
@@ -885,9 +1137,9 @@
             "reps": 25
           },
           {
-            "movement": "fire-hydrant",
-            "reps": 36,
-            "note": "18 per side"
+            "movement": "nordic-curl",
+            "reps": 6,
+            "note": "partner holds your ankles"
           }
         ]
       },
@@ -909,9 +1161,8 @@
             "reps": 20
           },
           {
-            "movement": "lateral-lunge",
-            "reps": 24,
-            "note": "12 per side"
+            "movement": "table-row",
+            "reps": 12
           },
           {
             "movement": "flutter-kick",
@@ -998,9 +1249,9 @@
             "reps": 25
           },
           {
-            "movement": "fire-hydrant",
-            "reps": 36,
-            "note": "18 per side"
+            "movement": "nordic-curl",
+            "reps": 6,
+            "note": "partner holds your ankles"
           }
         ]
       }
@@ -1086,9 +1337,9 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "fire-hydrant",
-            "reps": 36,
-            "note": "18 per side"
+            "movement": "nordic-curl",
+            "reps": 6,
+            "note": "partner holds your ankles"
           },
           {
             "movement": "single-leg-glute-bridge",
@@ -1100,9 +1351,135 @@
     ]
   },
   {
-    "name": "4 rounds of holds",
+    "name": "Ladder down",
     "level": 3,
     "order": 5,
+    "warmup": [
+      {
+        "movement": "jog",
+        "distance_m": 400,
+        "note": "easy"
+      },
+      {
+        "movement": "squat",
+        "reps": 20
+      },
+      {
+        "movement": "push-up",
+        "reps": 10
+      },
+      {
+        "movement": "reverse-lunge",
+        "reps": 20,
+        "note": "10 per side"
+      },
+      {
+        "movement": "arm-circle",
+        "reps": 20
+      }
+    ],
+    "circuits": [
+      {
+        "repeat": 2,
+        "rest_after_seconds": 60,
+        "movements": [
+          {
+            "movement": "single-leg-glute-bridge",
+            "reps": 20,
+            "note": "10 per side"
+          },
+          {
+            "movement": "step-up",
+            "reps": 20,
+            "note": "10 per side"
+          },
+          {
+            "movement": "hip-thrust",
+            "reps": 25
+          }
+        ]
+      },
+      {
+        "rest_after_seconds": 90,
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "step-up",
+            "reps": 36,
+            "note": "18 per side"
+          },
+          {
+            "movement": "push-up",
+            "reps": 28
+          }
+        ]
+      },
+      {
+        "rest_after_seconds": 90,
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "step-up",
+            "reps": 28,
+            "note": "14 per side"
+          },
+          {
+            "movement": "push-up",
+            "reps": 21
+          }
+        ]
+      },
+      {
+        "rest_after_seconds": 90,
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "step-up",
+            "reps": 20,
+            "note": "10 per side"
+          },
+          {
+            "movement": "push-up",
+            "reps": 14
+          }
+        ]
+      },
+      {
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "step-up",
+            "reps": 12,
+            "note": "6 per side"
+          },
+          {
+            "movement": "push-up",
+            "reps": 7
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "4 rounds of holds",
+    "level": 3,
+    "order": 6,
     "warmup": [
       {
         "movement": "jog",
@@ -1133,11 +1510,6 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "single-leg-glute-bridge",
-            "reps": 20,
-            "note": "10 per side"
-          },
-          {
             "movement": "step-up",
             "reps": 20,
             "note": "10 per side"
@@ -1147,9 +1519,14 @@
             "reps": 25
           },
           {
-            "movement": "fire-hydrant",
-            "reps": 36,
-            "note": "18 per side"
+            "movement": "nordic-curl",
+            "reps": 6,
+            "note": "partner holds your ankles"
+          },
+          {
+            "movement": "single-leg-glute-bridge",
+            "reps": 20,
+            "note": "10 per side"
           }
         ]
       },
@@ -1179,7 +1556,7 @@
     ]
   },
   {
-    "name": "5 circuits for time",
+    "name": "4 circuits for time",
     "level": 4,
     "order": 1,
     "warmup": [
@@ -1228,7 +1605,7 @@
         ]
       },
       {
-        "repeat": 5,
+        "repeat": 4,
         "rest_after_seconds": 120,
         "movements": [
           {
@@ -1242,11 +1619,15 @@
           },
           {
             "movement": "shoulder-tap",
-            "reps": 30
+            "reps": 24
+          },
+          {
+            "movement": "table-row",
+            "reps": 14
           },
           {
             "movement": "bicycle-crunch",
-            "reps": 40
+            "reps": 30
           }
         ]
       }
@@ -1295,9 +1676,9 @@
             "reps": 30
           },
           {
-            "movement": "curtsy-lunge",
-            "reps": 24,
-            "note": "12 per side"
+            "movement": "nordic-curl",
+            "reps": 8,
+            "note": "partner holds your ankles"
           }
         ]
       },
@@ -1320,9 +1701,8 @@
             "reps": 15
           },
           {
-            "movement": "curtsy-lunge",
-            "reps": 24,
-            "note": "12 per side"
+            "movement": "table-row",
+            "reps": 15
           },
           {
             "movement": "v-up",
@@ -1341,7 +1721,7 @@
     ]
   },
   {
-    "name": "4 sprints",
+    "name": "10 sprints",
     "level": 4,
     "order": 3,
     "warmup": [
@@ -1375,13 +1755,13 @@
     ],
     "circuits": [
       {
-        "repeat": 4,
-        "rest_after_seconds": 180,
+        "repeat": 10,
+        "rest_after_seconds": 120,
         "movements": [
           {
             "movement": "run",
-            "distance_m": 400,
-            "note": "down the street and back, all out"
+            "distance_m": 100,
+            "note": "all out, out and back"
           }
         ]
       },
@@ -1390,12 +1770,13 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "tuck-jump",
-            "reps": 12
+            "movement": "broad-jump",
+            "reps": 16
           },
           {
-            "movement": "jump-squat",
-            "reps": 20
+            "movement": "skater-jump",
+            "reps": 30,
+            "note": "15 per side"
           }
         ]
       },
@@ -1408,9 +1789,9 @@
             "reps": 30
           },
           {
-            "movement": "curtsy-lunge",
-            "reps": 24,
-            "note": "12 per side"
+            "movement": "nordic-curl",
+            "reps": 8,
+            "note": "partner holds your ankles"
           }
         ]
       }
@@ -1517,9 +1898,9 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "curtsy-lunge",
-            "reps": 24,
-            "note": "12 per side"
+            "movement": "nordic-curl",
+            "reps": 8,
+            "note": "partner holds your ankles"
           },
           {
             "movement": "single-leg-glute-bridge",
@@ -1531,9 +1912,131 @@
     ]
   },
   {
-    "name": "4 rounds of holds",
+    "name": "Ladder down",
     "level": 4,
     "order": 5,
+    "warmup": [
+      {
+        "movement": "jog",
+        "distance_m": 400,
+        "note": "easy"
+      },
+      {
+        "movement": "squat",
+        "reps": 20
+      },
+      {
+        "movement": "push-up",
+        "reps": 10
+      },
+      {
+        "movement": "reverse-lunge",
+        "reps": 20,
+        "note": "10 per side"
+      },
+      {
+        "movement": "high-knees",
+        "reps": 30
+      }
+    ],
+    "circuits": [
+      {
+        "repeat": 2,
+        "rest_after_seconds": 60,
+        "movements": [
+          {
+            "movement": "single-leg-glute-bridge",
+            "reps": 24,
+            "note": "12 per side"
+          },
+          {
+            "movement": "split-squat",
+            "reps": 28,
+            "note": "14 per side"
+          },
+          {
+            "movement": "hip-thrust",
+            "reps": 30
+          }
+        ]
+      },
+      {
+        "rest_after_seconds": 90,
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "jump-squat",
+            "reps": 40
+          },
+          {
+            "movement": "pike-push-up",
+            "reps": 28
+          }
+        ]
+      },
+      {
+        "rest_after_seconds": 90,
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "jump-squat",
+            "reps": 30
+          },
+          {
+            "movement": "pike-push-up",
+            "reps": 21
+          }
+        ]
+      },
+      {
+        "rest_after_seconds": 90,
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "jump-squat",
+            "reps": 20
+          },
+          {
+            "movement": "pike-push-up",
+            "reps": 14
+          }
+        ]
+      },
+      {
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "jump-squat",
+            "reps": 10
+          },
+          {
+            "movement": "pike-push-up",
+            "reps": 7
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "4 rounds of holds",
+    "level": 4,
+    "order": 6,
     "warmup": [
       {
         "movement": "jog",
@@ -1564,11 +2067,6 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "single-leg-glute-bridge",
-            "reps": 24,
-            "note": "12 per side"
-          },
-          {
             "movement": "split-squat",
             "reps": 28,
             "note": "14 per side"
@@ -1578,7 +2076,12 @@
             "reps": 30
           },
           {
-            "movement": "curtsy-lunge",
+            "movement": "nordic-curl",
+            "reps": 8,
+            "note": "partner holds your ankles"
+          },
+          {
+            "movement": "single-leg-glute-bridge",
             "reps": 24,
             "note": "12 per side"
           }
@@ -1614,7 +2117,7 @@
     ]
   },
   {
-    "name": "5 circuits for time",
+    "name": "6 circuits for time",
     "level": 5,
     "order": 1,
     "warmup": [
@@ -1663,7 +2166,7 @@
         ]
       },
       {
-        "repeat": 5,
+        "repeat": 6,
         "rest_after_seconds": 90,
         "movements": [
           {
@@ -1682,7 +2185,7 @@
           },
           {
             "movement": "burpee",
-            "reps": 12
+            "reps": 15
           }
         ]
       }
@@ -1731,9 +2234,9 @@
             "reps": 35
           },
           {
-            "movement": "step-up",
-            "reps": 30,
-            "note": "15 per side"
+            "movement": "nordic-curl",
+            "reps": 10,
+            "note": "partner holds your ankles"
           }
         ]
       },
@@ -1755,9 +2258,8 @@
             "reps": 25
           },
           {
-            "movement": "jumping-lunge",
-            "reps": 24,
-            "note": "12 per side"
+            "movement": "table-row",
+            "reps": 18
           },
           {
             "movement": "sit-up",
@@ -1776,7 +2278,7 @@
     ]
   },
   {
-    "name": "10 sprints",
+    "name": "4 sprints",
     "level": 5,
     "order": 3,
     "warmup": [
@@ -1810,13 +2312,13 @@
     ],
     "circuits": [
       {
-        "repeat": 10,
-        "rest_after_seconds": 120,
+        "repeat": 4,
+        "rest_after_seconds": 180,
         "movements": [
           {
             "movement": "run",
-            "distance_m": 100,
-            "note": "all out, out and back"
+            "distance_m": 400,
+            "note": "down the street and back, all out"
           }
         ]
       },
@@ -1825,13 +2327,12 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "broad-jump",
-            "reps": 16
+            "movement": "tuck-jump",
+            "reps": 15
           },
           {
-            "movement": "skater-jump",
-            "reps": 30,
-            "note": "15 per side"
+            "movement": "jump-squat",
+            "reps": 24
           }
         ]
       },
@@ -1844,9 +2345,9 @@
             "reps": 35
           },
           {
-            "movement": "step-up",
-            "reps": 30,
-            "note": "15 per side"
+            "movement": "nordic-curl",
+            "reps": 10,
+            "note": "partner holds your ankles"
           }
         ]
       }
@@ -1953,9 +2454,9 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "step-up",
-            "reps": 30,
-            "note": "15 per side"
+            "movement": "nordic-curl",
+            "reps": 10,
+            "note": "partner holds your ankles"
           },
           {
             "movement": "single-leg-glute-bridge",
@@ -1967,9 +2468,131 @@
     ]
   },
   {
-    "name": "4 rounds of holds",
+    "name": "Ladder down",
     "level": 5,
     "order": 5,
+    "warmup": [
+      {
+        "movement": "jog",
+        "distance_m": 400,
+        "note": "easy"
+      },
+      {
+        "movement": "squat",
+        "reps": 20
+      },
+      {
+        "movement": "push-up",
+        "reps": 10
+      },
+      {
+        "movement": "reverse-lunge",
+        "reps": 20,
+        "note": "10 per side"
+      },
+      {
+        "movement": "high-knees",
+        "reps": 30
+      }
+    ],
+    "circuits": [
+      {
+        "repeat": 2,
+        "rest_after_seconds": 60,
+        "movements": [
+          {
+            "movement": "single-leg-glute-bridge",
+            "reps": 30,
+            "note": "15 per side"
+          },
+          {
+            "movement": "split-squat",
+            "reps": 30,
+            "note": "15 per side"
+          },
+          {
+            "movement": "hip-thrust",
+            "reps": 35
+          }
+        ]
+      },
+      {
+        "rest_after_seconds": 90,
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "burpee",
+            "reps": 30
+          },
+          {
+            "movement": "push-up",
+            "reps": 40
+          }
+        ]
+      },
+      {
+        "rest_after_seconds": 90,
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "burpee",
+            "reps": 22
+          },
+          {
+            "movement": "push-up",
+            "reps": 30
+          }
+        ]
+      },
+      {
+        "rest_after_seconds": 90,
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "burpee",
+            "reps": 15
+          },
+          {
+            "movement": "push-up",
+            "reps": 20
+          }
+        ]
+      },
+      {
+        "movements": [
+          {
+            "movement": "run",
+            "distance_m": 400,
+            "note": "down the street and back, hard"
+          },
+          {
+            "movement": "burpee",
+            "reps": 8
+          },
+          {
+            "movement": "push-up",
+            "reps": 10
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "4 rounds of holds",
+    "level": 5,
+    "order": 6,
     "warmup": [
       {
         "movement": "jog",
@@ -2000,11 +2623,6 @@
         "rest_after_seconds": 60,
         "movements": [
           {
-            "movement": "single-leg-glute-bridge",
-            "reps": 30,
-            "note": "15 per side"
-          },
-          {
             "movement": "split-squat",
             "reps": 30,
             "note": "15 per side"
@@ -2014,7 +2632,12 @@
             "reps": 35
           },
           {
-            "movement": "step-up",
+            "movement": "nordic-curl",
+            "reps": 10,
+            "note": "partner holds your ankles"
+          },
+          {
+            "movement": "single-leg-glute-bridge",
             "reps": 30,
             "note": "15 per side"
           }
