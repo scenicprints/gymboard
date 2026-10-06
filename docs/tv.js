@@ -10,8 +10,8 @@
 // itself: it pulls its own updates and never shows an error.
 // ─────────────────────────────────────────────────────────────────────
 
-import { watchSession, getDone } from './store.js?v=0.2.2';
-import { drawMovement, cycleMs } from './exercise.js?v=0.2.2';
+import { watchSession, getDone } from './store.js?v=0.2.3';
+import { drawMovement, cycleMs } from './exercise.js?v=0.2.3';
 
 const root = document.getElementById('root');
 const esc = (s) => String(s).replace(/[&<>"]/g,
@@ -220,7 +220,7 @@ setInterval(() => frame(performance.now()), 42);
 
 // Midnight and OTA. The kiosk has no keyboard, so the page checks for a
 // new build and reloads itself.
-const BOOT_VERSION = '0.2.2';
+const BOOT_VERSION = '0.2.3';
 setInterval(async () => {
   try {
     const r = await fetch('version.json', { cache: 'no-store' });
