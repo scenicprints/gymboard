@@ -45,6 +45,24 @@ install -m 644 "$HERE/gymboard-netcheck.timer" /etc/systemd/system/gymboard-netc
 systemctl daemon-reload
 systemctl enable --now gymboard-netcheck.timer
 
+echo "==> sound goes to the TV"
+# The Pi exposes two outputs: the headphone jack nobody has plugged
+# anything into, and HDMI. Without this, ALSA defaults to card 0 and the
+# rest timer beeps into a 3.5mm socket.
+#
+# plug: in front of it because vc4-hdmi rejects the format Chromium asks
+# for. Straight hw:vc4hdmi,0 fails with "Setting of hwparams failed".
+cat > /etc/asound.conf <<'EOF'
+pcm.!default {
+  type plug
+  slave.pcm "hw:vc4hdmi,0"
+}
+ctl.!default {
+  type hw
+  card vc4hdmi
+}
+EOF
+
 echo "==> the screen belongs to the board, not to a console"
 systemctl disable --now getty@tty1 || true
 

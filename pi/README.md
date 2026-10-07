@@ -58,8 +58,15 @@ option and no cable option. If the Pi ever cannot find a known network, join the
 
 - **seatd is not optional.** Without it cage cannot open a seat and exits with
   "Timeout waiting session to become active". logind alone does not work here.
-- **`WLR_LIBINPUT_NO_DEVICES=1` is not optional.** This board has no input
-  devices at all, and wlroots refuses to start without one unless told not to look.
+- **`WLR_LIBINPUT_NO_DEVICES=1` was wrong and is now unset.** The theory was
+  that a board with dead USB has no input devices. It has two: the HDMI port
+  registers CEC and jack detect, so wlroots starts fine without the flag. With
+  it set, wlroots skips libinput and parks its default cursor in the middle of
+  the screen forever, because nothing exists that could move it. The page's
+  `cursor: none` cannot touch it; that cursor belongs to the compositor.
+- **Sound needs `/etc/asound.conf`.** ALSA defaults to card 0, the headphone
+  jack. `setup.sh` writes a default pointing at `hw:vc4hdmi,0` through `plug:`,
+  which is required because vc4-hdmi rejects the raw format outright.
 - **xwayland is not optional**, even though nothing uses X. cage treats a missing
   Xwayland binary as fatal.
 - The service carries its own `XDG_RUNTIME_DIR` through `RuntimeDirectory=`, so

@@ -13,9 +13,13 @@ Environment=HOME=/home/jkevin
 RuntimeDirectory=gymboard
 RuntimeDirectoryMode=0700
 Environment=XDG_RUNTIME_DIR=/run/gymboard
-# This board has no working USB, so it has no input devices at all.
-# wlroots refuses to start without one unless it is told not to look.
-Environment=WLR_LIBINPUT_NO_DEVICES=1
+# WLR_LIBINPUT_NO_DEVICES is deliberately NOT set. It was, on the theory
+# that a board with dead USB has no input devices, but the HDMI port
+# registers two of its own (CEC, and jack detect) so wlroots starts fine
+# without it. With it set, wlroots skips libinput entirely and draws its
+# default cursor in the middle of the screen, where it sits forever
+# because nothing exists that could move it. The page's `cursor: none`
+# cannot help: that cursor belongs to the compositor, not the page.
 ExecStart=/usr/local/bin/gymboard-kiosk
 Restart=always
 RestartSec=5
