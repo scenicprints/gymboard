@@ -12,8 +12,8 @@
 // nobody is standing there to see.
 // ─────────────────────────────────────────────────────────────────────
 
-import { watchSession, getDone } from './store.js?v=0.2.7';
-import { drawMovement } from './exercise.js?v=0.2.7';
+import { watchSession, getDone } from './store.js?v=0.2.8';
+import { drawMovement } from './exercise.js?v=0.2.8';
 
 const root = document.getElementById('root');
 const esc = (s) => String(s).replace(/[&<>"]/g,
@@ -301,7 +301,7 @@ setInterval(() => frame(performance.now()), 42);
 
 // OTA. The kiosk has no keyboard, so the page checks for a new build and
 // reloads itself.
-const BOOT_VERSION = '0.2.7';
+const BOOT_VERSION = '0.2.8';
 setInterval(async () => {
   try {
     const r = await fetch('version.json', { cache: 'no-store' });

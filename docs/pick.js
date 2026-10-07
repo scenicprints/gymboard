@@ -16,9 +16,9 @@
 // countdown, and the next circuit is live.
 // ─────────────────────────────────────────────────────────────────────
 
-import { setSession, watchSession, recordWorkout, getDone } from './store.js?v=0.2.7';
+import { setSession, watchSession, recordWorkout, getDone } from './store.js?v=0.2.8';
 
-const VERSION = '0.2.7';
+const VERSION = '0.2.8';
 const root = document.getElementById('root');
 const toastEl = document.getElementById('toast');
 const esc = (s) => String(s).replace(/[&<>"]/g,

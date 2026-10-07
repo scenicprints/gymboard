@@ -90,6 +90,23 @@ the out and back with the turn, not a person running in a straight line.
 Its number is a **count of down and backs**, not metres. `reps: 4` is four of
 them without stopping. Metres would just read as an ordinary run.
 
+## Mobility
+
+Eight ids the rewritten level 1 brought in. All of them are held or moved
+through slowly rather than performed, so the drawings barely move: the shape
+is the whole instruction.
+
+| id | What it shows |
+|---|---|
+| `calf-stretch` | Staggered stance, back leg straight, back heel pressed down. |
+| `cat-cow` | On hands and knees, the spine arching up then dipping, head following. |
+| `chest-stretch` | Standing, arms swept back and open, chest forward. |
+| `hamstring-stretch` | Standing fold over straight legs, hands reaching down. |
+| `hip-circle` | Standing, hands on hips, hips circling. The only one that travels. |
+| `hip-flexor-stretch` | Half kneeling, back knee down, hips pushed forward. |
+| `leg-swing` | On one leg, the other swinging forward and back, loose. |
+| `reverse-snow-angel` | Face down, arms sweeping from overhead to the hips. |
+
 ## Movements that need a prop or a partner
 
 `hip-thrust`, `split-squat` and `step-up` use furniture, a couch, a chair or a
