@@ -16,9 +16,9 @@
 // countdown, and the next circuit is live.
 // ─────────────────────────────────────────────────────────────────────
 
-import { setSession, watchSession, recordWorkout, getDone } from './store.js?v=0.2.8';
+import { setSession, watchSession, recordWorkout, getDone } from './store.js?v=0.2.9';
 
-const VERSION = '0.2.8';
+const VERSION = '0.2.9';
 const root = document.getElementById('root');
 const toastEl = document.getElementById('toast');
 const esc = (s) => String(s).replace(/[&<>"]/g,
@@ -102,7 +102,9 @@ async function endCircuit() {
   if (s.circuit >= r.circuits.length - 1) {
     const reps = totals(byId(s.routineId)).reps;
     const totalMs = now - s.startedAt;
-    await write({ routineId: r.id, phase: 'done', circuitMs, totalMs, reps, finishedAt: now });
+    const cooling = r.cooldown && r.cooldown.length;
+    await write({ routineId: r.id, phase: cooling ? 'cooldown' : 'done',
+                  circuitMs, totalMs, reps, finishedAt: now });
     recordWorkout({ routineId: r.id, ms: totalMs, reps, circuits: r.circuits.length })
       .then(() => { if (done.indexOf(r.id) < 0) done = done.concat([r.id]); })
       .catch(() => { /* the stats can miss one rather than block the board */ });
@@ -117,6 +119,14 @@ async function endCircuit() {
   return write({ routineId: r.id, phase: 'resting', circuit: s.circuit,
                  nextCircuit: s.circuit + 1, restEndsAt: now + rest,
                  startedAt: s.startedAt, circuitMs });
+}
+
+/// The clock stopped when the last circuit did, and the workout is
+/// already recorded, so this only moves the screen on.
+function cooldownDone() {
+  const s = session;
+  return write({ routineId: s.routineId, phase: 'done', circuitMs: s.circuitMs || [],
+                 totalMs: s.totalMs, reps: s.reps, finishedAt: s.finishedAt });
 }
 
 function skipRest() {
@@ -204,7 +214,13 @@ function renderRoutine() {
         ? ' &middot; ' + c.rest_after_seconds + 's REST AFTER' : ''}</div>
       <ul class="list">${c.movements.map((m) =>
         `<li><b>${label(m)}</b> ${nice(m.movement)}${m.note ? `<i>${esc(m.note)}</i>` : ''}</li>`).join('')}</ul>
+      ${c.note ? `<div class="cnote">${esc(c.note)}</div>` : ''}
     </div>`).join('')}
+    ${r.cooldown && r.cooldown.length ? `<div class="blk">
+      <div class="kicker">COOL-DOWN</div>
+      <ul class="list">${r.cooldown.map((m) =>
+        `<li><b>${label(m)}</b> ${nice(m.movement)}${m.note ? `<i>${esc(m.note)}</i>` : ''}</li>`).join('')}</ul>
+    </div>` : ''}
     <button class="go" id="start">${isDone ? 'Do it again' : 'Start'}</button>`;
   bind('#back', () => { openId = null; render(); });
   bind('#start', () => startRoutine(r.id));
@@ -240,10 +256,25 @@ function render() {
       </header>
       <ul class="list">${c.movements.map((m) =>
         `<li><b>${label(m)}</b> ${nice(m.movement)}${m.note ? `<i>${esc(m.note)}</i>` : ''}</li>`).join('')}</ul>
+      ${c.note ? `<div class="cnote">${esc(c.note)}</div>` : ''}
       <button class="go" id="end">End circuit</button>
       <button class="quiet" id="stop">Stop</button>`;
     bind('#end', endCircuit);
     bind('#stop', abandon);
+    return;
+  }
+
+  // A routine can be rewritten between starting and finishing, so a
+  // cooldown phase with nothing in it falls through to the stats rather
+  // than showing an empty screen with one button on it.
+  if (s.phase === 'cooldown' && (r.cooldown || []).length) {
+    root.innerHTML = `
+      <header><div class="kicker">COOL-DOWN</div><h1>${mmss(s.totalMs || 0)}</h1>
+        <div class="sub">That is the workout. This part is not on the clock.</div></header>
+      <ul class="list">${(r.cooldown || []).map((m) =>
+        `<li><b>${label(m)}</b> ${nice(m.movement)}${m.note ? `<i>${esc(m.note)}</i>` : ''}</li>`).join('')}</ul>
+      <button class="go" id="cdone">Cooldown done</button>`;
+    bind('#cdone', cooldownDone);
     return;
   }
 
@@ -260,7 +291,7 @@ function render() {
     return;
   }
 
-  if (s.phase === 'done') {
+  if (s.phase === 'done' || s.phase === 'cooldown') {
     root.innerHTML = `
       <header><div class="kicker">DONE</div><h1>${mmss(s.totalMs || 0)}</h1>
         <div class="sub">${s.reps || 0} reps &middot; ${(s.circuitMs || []).length} circuits</div></header>

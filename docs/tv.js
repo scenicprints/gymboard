@@ -12,8 +12,8 @@
 // nobody is standing there to see.
 // ─────────────────────────────────────────────────────────────────────
 
-import { watchSession, getDone } from './store.js?v=0.2.8';
-import { drawMovement } from './exercise.js?v=0.2.8';
+import { watchSession, getDone } from './store.js?v=0.2.9';
+import { drawMovement } from './exercise.js?v=0.2.9';
 
 const root = document.getElementById('root');
 const esc = (s) => String(s).replace(/[&<>"]/g,
@@ -170,9 +170,10 @@ function paintQuiet(now) {
   driftQuiet(now);
 }
 
-function paintStrip(key, head, movements) {
+function paintStrip(key, head, movements, note) {
   if (painted === key) return;
-  root.innerHTML = head + `<div class="strip">${movements.map(cell).join('')}</div>`;
+  root.innerHTML = head + `<div class="strip">${movements.map(cell).join('')}</div>`
+    + (note ? `<div class="cnote">${esc(note)}</div>` : '');
   painted = key;
   wire();
 }
@@ -198,17 +199,28 @@ function render(now) {
     return;
   }
 
+  if (s.phase === 'cooldown' && (r.cooldown || []).length) {
+    paintStrip('cool' + r.id, `
+      ${segs(r.circuits.length, r.circuits.length)}
+      <header>
+        <div class="clock"><b>${mmss(s.totalMs || 0)}</b><span>FINISHED IN</span></div>
+        <div class="tmr"></div>
+        <div class="count"><b>COOL<i>&middot;</i>DOWN</b><span>${esc(r.name).toUpperCase()}</span></div>
+      </header>`, r.cooldown || []);
+    return;
+  }
+
   if (s.phase === 'running') {
     const c = r.circuits[s.circuit];
     if (!c) return;
-    paintStrip('c' + s.circuit + r.id, `
+    paintStrip('c' + s.circuit + r.id + (c.note || ''), `
       ${segs(r.circuits.length, s.circuit)}
       <header>
         <div class="clock"><b id="wclock">0:00</b><span>ELAPSED</span></div>
         <div class="tmr" id="ctimer"></div>
         <div class="count"><b>${String(s.circuit + 1).padStart(2, '0')}<i>/</i>${String(r.circuits.length).padStart(2, '0')}</b>
           <span>CIRCUIT</span></div>
-      </header>`, c.movements);
+      </header>`, c.movements, c.note);
 
     const wc = document.getElementById('wclock');
     if (wc) wc.textContent = mmss(now - s.startedAt);
@@ -251,7 +263,7 @@ function render(now) {
     return;
   }
 
-  if (s.phase === 'done') {
+  if (s.phase === 'done' || s.phase === 'cooldown') {
     const key = 'done' + s.finishedAt;
     if (painted !== key) {
       const ms = s.circuitMs || [];
@@ -301,7 +313,7 @@ setInterval(() => frame(performance.now()), 42);
 
 // OTA. The kiosk has no keyboard, so the page checks for a new build and
 // reloads itself.
-const BOOT_VERSION = '0.2.8';
+const BOOT_VERSION = '0.2.9';
 setInterval(async () => {
   try {
     const r = await fetch('version.json', { cache: 'no-store' });

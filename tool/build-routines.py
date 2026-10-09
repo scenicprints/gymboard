@@ -33,7 +33,8 @@ window.expandRoutine = function (r) {
   for (const c of r.circuits) {
     const n = c.repeat || 1;
     for (let i = 0; i < n; i++) {
-      circuits.push({ movements: c.movements, rest_after_seconds: c.rest_after_seconds || 0 });
+      circuits.push({ movements: c.movements, note: c.note || null,
+                      rest_after_seconds: c.rest_after_seconds || 0 });
     }
   }
   return Object.assign({}, r, { circuits: circuits });
