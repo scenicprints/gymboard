@@ -63,11 +63,6 @@ body.tv { overflow: hidden; cursor: none; padding: var(--safe-y) var(--safe-x);
           text-transform: uppercase; margin-top: 1.4vh; text-align: center; }
 .tv .note { font-size: 1.9vh; color: #7c848f; margin-top: 0.7vh; text-align: center; }
 
-.tv .cnote {
-  flex: 0 0 auto; text-align: center; font-size: 2.3vh; color: #c3cad3;
-  padding: 1.7vh 4vw 0.3vh; line-height: 1.4;
-}
-
 .tv .big, .tv .rest, .tv .stats {
   flex: 1 1 auto; display: flex; flex-direction: column;
   align-items: center; justify-content: center; gap: 1.6vh;
@@ -141,11 +136,6 @@ body.pick {
 }
 .pick .list b { font-weight: 400; color: var(--ink); font-size: 20px; min-width: 62px; }
 .pick .list i { font-style: normal; font-size: 12px; color: var(--dim); margin-left: auto; }
-
-.pick .cnote {
-  font-size: 15px; color: #9aa2ad; line-height: 1.5;
-  margin: -4px 0 18px; padding-left: 2px;
-}
 
 .pick .rundown { margin-bottom: 18px; }
 .pick .blk { margin-bottom: 16px; }

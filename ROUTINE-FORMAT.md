@@ -28,7 +28,6 @@ so what the phone offers is simply the next one.
     {
       "repeat": 4,
       "rest_after_seconds": 90,
-      "note": "Keep the runs honest. The jump squats are the part that decides this one.",
       "movements": [
         { "movement": "run",            "distance_m": 400, "note": "down the street and back" },
         { "movement": "jump-squat",     "reps": 15 },
@@ -66,7 +65,6 @@ That is his example workout, written out in full. Nothing else is required.
 | `movements` | yes | In the order they are done. |
 | `rest_after_seconds` | no | Rest before the next circuit. Leave it out for no rest. |
 | `repeat` | no | Write the circuit once and repeat it. `"repeat": 4` gives four. |
-| `note` | no | One line about the circuit as a whole, shown under the movements. |
 
 Circuits do not have to match each other. Write them out separately when they
 differ, and use `repeat` only when they are genuinely the same work.
@@ -94,10 +92,6 @@ differ, and use `repeat` only when they are genuinely the same work.
 - **The cooldown is off the clock.** The workout clock stops when the last
   circuit ends, and the session is recorded at that moment, so a cooldown that
   gets skipped costs nothing. It is one screen and one tap, like the warm-up.
-- **A circuit `note` is for the circuit, not a movement.** It sits under the
-  whole strip on the TV, so it is the place for pacing, or what to do if
-  something is too hard. A movement's own `note` still goes beside that
-  movement. Keep it to one line: it is read from across a room, mid-effort.
 - **Rest runs itself.** Rest counts down, then five seconds of countdown, then
   the next circuit starts on its own. Nobody taps anything unless they want to
   cut the rest short.

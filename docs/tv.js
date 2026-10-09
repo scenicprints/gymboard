@@ -12,8 +12,8 @@
 // nobody is standing there to see.
 // ─────────────────────────────────────────────────────────────────────
 
-import { watchSession, getDone } from './store.js?v=0.2.9';
-import { drawMovement } from './exercise.js?v=0.2.9';
+import { watchSession, getDone } from './store.js?v=0.3.0';
+import { drawMovement } from './exercise.js?v=0.3.0';
 
 const root = document.getElementById('root');
 const esc = (s) => String(s).replace(/[&<>"]/g,
@@ -170,10 +170,9 @@ function paintQuiet(now) {
   driftQuiet(now);
 }
 
-function paintStrip(key, head, movements, note) {
+function paintStrip(key, head, movements) {
   if (painted === key) return;
-  root.innerHTML = head + `<div class="strip">${movements.map(cell).join('')}</div>`
-    + (note ? `<div class="cnote">${esc(note)}</div>` : '');
+  root.innerHTML = head + `<div class="strip">${movements.map(cell).join('')}</div>`;
   painted = key;
   wire();
 }
@@ -213,14 +212,14 @@ function render(now) {
   if (s.phase === 'running') {
     const c = r.circuits[s.circuit];
     if (!c) return;
-    paintStrip('c' + s.circuit + r.id + (c.note || ''), `
+    paintStrip('c' + s.circuit + r.id, `
       ${segs(r.circuits.length, s.circuit)}
       <header>
         <div class="clock"><b id="wclock">0:00</b><span>ELAPSED</span></div>
         <div class="tmr" id="ctimer"></div>
         <div class="count"><b>${String(s.circuit + 1).padStart(2, '0')}<i>/</i>${String(r.circuits.length).padStart(2, '0')}</b>
           <span>CIRCUIT</span></div>
-      </header>`, c.movements, c.note);
+      </header>`, c.movements);
 
     const wc = document.getElementById('wclock');
     if (wc) wc.textContent = mmss(now - s.startedAt);
@@ -313,7 +312,7 @@ setInterval(() => frame(performance.now()), 42);
 
 // OTA. The kiosk has no keyboard, so the page checks for a new build and
 // reloads itself.
-const BOOT_VERSION = '0.2.9';
+const BOOT_VERSION = '0.3.0';
 setInterval(async () => {
   try {
     const r = await fetch('version.json', { cache: 'no-store' });

@@ -16,9 +16,9 @@
 // countdown, and the next circuit is live.
 // ─────────────────────────────────────────────────────────────────────
 
-import { setSession, watchSession, recordWorkout, getDone } from './store.js?v=0.2.9';
+import { setSession, watchSession, recordWorkout, getDone } from './store.js?v=0.3.0';
 
-const VERSION = '0.2.9';
+const VERSION = '0.3.0';
 const root = document.getElementById('root');
 const toastEl = document.getElementById('toast');
 const esc = (s) => String(s).replace(/[&<>"]/g,
@@ -214,7 +214,6 @@ function renderRoutine() {
         ? ' &middot; ' + c.rest_after_seconds + 's REST AFTER' : ''}</div>
       <ul class="list">${c.movements.map((m) =>
         `<li><b>${label(m)}</b> ${nice(m.movement)}${m.note ? `<i>${esc(m.note)}</i>` : ''}</li>`).join('')}</ul>
-      ${c.note ? `<div class="cnote">${esc(c.note)}</div>` : ''}
     </div>`).join('')}
     ${r.cooldown && r.cooldown.length ? `<div class="blk">
       <div class="kicker">COOL-DOWN</div>
@@ -256,7 +255,6 @@ function render() {
       </header>
       <ul class="list">${c.movements.map((m) =>
         `<li><b>${label(m)}</b> ${nice(m.movement)}${m.note ? `<i>${esc(m.note)}</i>` : ''}</li>`).join('')}</ul>
-      ${c.note ? `<div class="cnote">${esc(c.note)}</div>` : ''}
       <button class="go" id="end">End circuit</button>
       <button class="quiet" id="stop">Stop</button>`;
     bind('#end', endCircuit);
