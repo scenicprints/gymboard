@@ -1,1 +1,1 @@
-{ "version": "0.3.0", "notes": "Cooldowns." }
+{ "version": "0.3.1", "notes": "The 30 second beep runs in warm-ups and cooldowns too." }

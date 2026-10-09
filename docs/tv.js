@@ -12,8 +12,8 @@
 // nobody is standing there to see.
 // ─────────────────────────────────────────────────────────────────────
 
-import { watchSession, getDone } from './store.js?v=0.3.0';
-import { drawMovement } from './exercise.js?v=0.3.0';
+import { watchSession, getDone } from './store.js?v=0.3.1';
+import { drawMovement } from './exercise.js?v=0.3.1';
 
 const root = document.getElementById('root');
 const esc = (s) => String(s).replace(/[&<>"]/g,
@@ -81,7 +81,22 @@ function beep(freq, ms, vol) {
     o.start(); o.stop(ac.currentTime + ms / 1000);
   } catch { /* a board with no audio is still a board */ }
 }
-let lastBeepBucket = -1, lastCount = -1;
+let lastBeepKey = '', lastCount = -1;
+
+/// A timer that counts up and beeps every thirty seconds. Any phase that
+/// holds something timed gets it, not just a circuit: a thirty second
+/// stretch needs the beep as much as a thirty second plank does.
+function tick(el, since, on, tag) {
+  if (!el) return;
+  if (!on || !since) { if (el.textContent) el.textContent = ''; return; }
+  const elapsed = Date.now() - since;
+  el.textContent = mmss(elapsed);
+  const bucket = Math.floor(elapsed / 30000);
+  const key = tag + bucket;
+  if (bucket > 0 && key !== lastBeepKey) { lastBeepKey = key; beep(880, 260, 0.35); }
+}
+
+const anyTimed = (list) => (list || []).some((m) => m.seconds != null);
 
 // ── pieces ───────────────────────────────────────────────────────────
 /// One segment per circuit across the very top, so how far through you
@@ -192,9 +207,11 @@ function render(now) {
       ${segs(r.circuits.length, -1)}
       <header>
         <div class="clock"><b>&mdash;</b><span>ELAPSED</span></div>
-        <div class="tmr"></div>
+        <div class="tmr" id="ctimer"></div>
         <div class="count"><b>WARM<i>&middot;</i>UP</b><span>${esc(r.name).toUpperCase()}</span></div>
       </header>`, r.warmup || []);
+    tick(document.getElementById('ctimer'), s.phaseStartedAt,
+         anyTimed(r.warmup), 'w' + r.id);
     return;
   }
 
@@ -203,9 +220,11 @@ function render(now) {
       ${segs(r.circuits.length, r.circuits.length)}
       <header>
         <div class="clock"><b>${mmss(s.totalMs || 0)}</b><span>FINISHED IN</span></div>
-        <div class="tmr"></div>
+        <div class="tmr" id="ctimer"></div>
         <div class="count"><b>COOL<i>&middot;</i>DOWN</b><span>${esc(r.name).toUpperCase()}</span></div>
       </header>`, r.cooldown || []);
+    tick(document.getElementById('ctimer'), s.finishedAt,
+         anyTimed(r.cooldown), 'c' + r.id);
     return;
   }
 
@@ -223,15 +242,8 @@ function render(now) {
 
     const wc = document.getElementById('wclock');
     if (wc) wc.textContent = mmss(now - s.startedAt);
-    const ct = document.getElementById('ctimer');
-    if (ct) {
-      if (timed(c)) {
-        const el = now - s.circuitStartedAt;
-        ct.textContent = mmss(el);
-        const bucket = Math.floor(el / 30000);
-        if (bucket > 0 && bucket !== lastBeepBucket) { lastBeepBucket = bucket; beep(880, 260, 0.35); }
-      } else if (ct.textContent) { ct.textContent = ''; }
-    }
+    tick(document.getElementById('ctimer'), s.circuitStartedAt,
+         timed(c), 'r' + s.circuit + r.id);
     return;
   }
 
@@ -312,7 +324,7 @@ setInterval(() => frame(performance.now()), 42);
 
 // OTA. The kiosk has no keyboard, so the page checks for a new build and
 // reloads itself.
-const BOOT_VERSION = '0.3.0';
+const BOOT_VERSION = '0.3.1';
 setInterval(async () => {
   try {
     const r = await fetch('version.json', { cache: 'no-store' });

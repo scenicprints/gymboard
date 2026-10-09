@@ -16,9 +16,9 @@
 // countdown, and the next circuit is live.
 // ─────────────────────────────────────────────────────────────────────
 
-import { setSession, watchSession, recordWorkout, getDone } from './store.js?v=0.3.0';
+import { setSession, watchSession, recordWorkout, getDone } from './store.js?v=0.3.1';
 
-const VERSION = '0.3.0';
+const VERSION = '0.3.1';
 const root = document.getElementById('root');
 const toastEl = document.getElementById('toast');
 const esc = (s) => String(s).replace(/[&<>"]/g,
@@ -79,7 +79,9 @@ async function write(state) {
 // ── the moves ────────────────────────────────────────────────────────
 function startRoutine(id) {
   const r = expand(byId(id));
-  if (r.warmup && r.warmup.length) return write({ routineId: r.id, phase: 'warmup' });
+  if (r.warmup && r.warmup.length) {
+    return write({ routineId: r.id, phase: 'warmup', phaseStartedAt: Date.now() });
+  }
   const now = Date.now();
   return write({ routineId: r.id, phase: 'running', circuit: 0,
                  startedAt: now, circuitStartedAt: now, circuitMs: [] });

@@ -82,9 +82,10 @@ differ, and use `repeat` only when they are genuinely the same work.
 ## Rules that come from how it runs
 
 - **A run ends back at the TV.** Write runs as out and back, not one way.
-- **`seconds` turns the circuit timer on.** If any movement in a circuit has
-  `seconds`, that circuit shows a timer counting up and beeps every 30 seconds.
-  No `seconds` anywhere in the circuit means no timer at all.
+- **`seconds` turns the timer on.** If any movement in a block has `seconds`,
+  that block shows a timer counting up and beeps every 30 seconds. This is true
+  of a warm-up and a cooldown as much as a circuit, so a 30 second stretch gets
+  the beep. No `seconds` anywhere in the block means no timer at all.
 - **No per-person anything.** Two people run the same routine at their own pace
   and one person taps when both are done, so nothing can be written per person.
 - **The TV shows a whole circuit at once**, every movement side by side, each
