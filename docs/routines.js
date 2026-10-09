@@ -61,30 +61,28 @@ window.ROUTINES = [
       "reps": 20
      }
     ]
+   }
+  ],
+  "cooldown": [
+   {
+    "movement": "hamstring-stretch",
+    "seconds": 30,
+    "note": "30 per side"
    },
    {
-    "movements": [
-     {
-      "movement": "hamstring-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "hip-flexor-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "calf-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "chest-stretch",
-      "seconds": 30,
-      "note": "per side"
-     }
-    ]
+    "movement": "hip-flexor-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "calf-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "chest-stretch",
+    "seconds": 30,
+    "note": "30 in a doorway"
    }
   ],
   "id": "l1-r1"
@@ -145,30 +143,28 @@ window.ROUTINES = [
       "reps": 12
      }
     ]
+   }
+  ],
+  "cooldown": [
+   {
+    "movement": "hamstring-stretch",
+    "seconds": 30,
+    "note": "30 per side"
    },
    {
-    "movements": [
-     {
-      "movement": "hamstring-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "hip-flexor-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "calf-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "chest-stretch",
-      "seconds": 30,
-      "note": "per side"
-     }
-    ]
+    "movement": "hip-flexor-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "calf-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "chest-stretch",
+    "seconds": 30,
+    "note": "30 in a doorway"
    }
   ],
   "id": "l1-r2"
@@ -225,30 +221,28 @@ window.ROUTINES = [
       "reps": 24
      }
     ]
+   }
+  ],
+  "cooldown": [
+   {
+    "movement": "hamstring-stretch",
+    "seconds": 30,
+    "note": "30 per side"
    },
    {
-    "movements": [
-     {
-      "movement": "hamstring-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "hip-flexor-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "calf-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "chest-stretch",
-      "seconds": 30,
-      "note": "per side"
-     }
-    ]
+    "movement": "hip-flexor-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "calf-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "chest-stretch",
+    "seconds": 30,
+    "note": "30 in a doorway"
    }
   ],
   "id": "l1-r3"
@@ -310,30 +304,28 @@ window.ROUTINES = [
       "reps": 14
      }
     ]
+   }
+  ],
+  "cooldown": [
+   {
+    "movement": "hamstring-stretch",
+    "seconds": 30,
+    "note": "30 per side"
    },
    {
-    "movements": [
-     {
-      "movement": "hamstring-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "hip-flexor-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "calf-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "chest-stretch",
-      "seconds": 30,
-      "note": "per side"
-     }
-    ]
+    "movement": "hip-flexor-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "calf-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "chest-stretch",
+    "seconds": 30,
+    "note": "30 in a doorway"
    }
   ],
   "id": "l1-r4"
@@ -415,30 +407,28 @@ window.ROUTINES = [
       "note": "5 per side"
      }
     ]
+   }
+  ],
+  "cooldown": [
+   {
+    "movement": "hamstring-stretch",
+    "seconds": 30,
+    "note": "30 per side"
    },
    {
-    "movements": [
-     {
-      "movement": "hamstring-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "hip-flexor-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "calf-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "chest-stretch",
-      "seconds": 30,
-      "note": "per side"
-     }
-    ]
+    "movement": "hip-flexor-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "calf-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "chest-stretch",
+    "seconds": 30,
+    "note": "30 in a doorway"
    }
   ],
   "id": "l1-r5"
@@ -500,30 +490,28 @@ window.ROUTINES = [
       "reps": 16
      }
     ]
+   }
+  ],
+  "cooldown": [
+   {
+    "movement": "hamstring-stretch",
+    "seconds": 30,
+    "note": "30 per side"
    },
    {
-    "movements": [
-     {
-      "movement": "hamstring-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "hip-flexor-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "calf-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "chest-stretch",
-      "seconds": 30,
-      "note": "per side"
-     }
-    ]
+    "movement": "hip-flexor-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "calf-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "chest-stretch",
+    "seconds": 30,
+    "note": "30 in a doorway"
    }
   ],
   "id": "l1-r6"
@@ -581,30 +569,28 @@ window.ROUTINES = [
       "note": "10 per side"
      }
     ]
+   }
+  ],
+  "cooldown": [
+   {
+    "movement": "hamstring-stretch",
+    "seconds": 30,
+    "note": "30 per side"
    },
    {
-    "movements": [
-     {
-      "movement": "hamstring-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "hip-flexor-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "calf-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "chest-stretch",
-      "seconds": 30,
-      "note": "per side"
-     }
-    ]
+    "movement": "hip-flexor-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "calf-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "chest-stretch",
+    "seconds": 30,
+    "note": "30 in a doorway"
    }
   ],
   "id": "l1-r7"
@@ -666,30 +652,28 @@ window.ROUTINES = [
       "reps": 18
      }
     ]
+   }
+  ],
+  "cooldown": [
+   {
+    "movement": "hamstring-stretch",
+    "seconds": 30,
+    "note": "30 per side"
    },
    {
-    "movements": [
-     {
-      "movement": "hamstring-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "hip-flexor-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "calf-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "chest-stretch",
-      "seconds": 30,
-      "note": "per side"
-     }
-    ]
+    "movement": "hip-flexor-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "calf-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "chest-stretch",
+    "seconds": 30,
+    "note": "30 in a doorway"
    }
   ],
   "id": "l1-r8"
@@ -751,30 +735,28 @@ window.ROUTINES = [
       "seconds": 30
      }
     ]
+   }
+  ],
+  "cooldown": [
+   {
+    "movement": "hamstring-stretch",
+    "seconds": 30,
+    "note": "30 per side"
    },
    {
-    "movements": [
-     {
-      "movement": "hamstring-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "hip-flexor-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "calf-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "chest-stretch",
-      "seconds": 30,
-      "note": "per side"
-     }
-    ]
+    "movement": "hip-flexor-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "calf-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "chest-stretch",
+    "seconds": 30,
+    "note": "30 in a doorway"
    }
   ],
   "id": "l1-r9"
@@ -915,30 +897,28 @@ window.ROUTINES = [
       "reps": 8
      }
     ]
+   }
+  ],
+  "cooldown": [
+   {
+    "movement": "hamstring-stretch",
+    "seconds": 30,
+    "note": "30 per side"
    },
    {
-    "movements": [
-     {
-      "movement": "hamstring-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "hip-flexor-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "calf-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "chest-stretch",
-      "seconds": 30,
-      "note": "per side"
-     }
-    ]
+    "movement": "hip-flexor-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "calf-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "chest-stretch",
+    "seconds": 30,
+    "note": "30 in a doorway"
    }
   ],
   "id": "l1-r10"
@@ -1001,30 +981,28 @@ window.ROUTINES = [
       "note": "per side"
      }
     ]
+   }
+  ],
+  "cooldown": [
+   {
+    "movement": "hamstring-stretch",
+    "seconds": 30,
+    "note": "30 per side"
    },
    {
-    "movements": [
-     {
-      "movement": "hamstring-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "hip-flexor-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "calf-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "chest-stretch",
-      "seconds": 30,
-      "note": "per side"
-     }
-    ]
+    "movement": "hip-flexor-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "calf-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "chest-stretch",
+    "seconds": 30,
+    "note": "30 in a doorway"
    }
   ],
   "id": "l1-r11"
@@ -1086,30 +1064,28 @@ window.ROUTINES = [
       "reps": 20
      }
     ]
+   }
+  ],
+  "cooldown": [
+   {
+    "movement": "hamstring-stretch",
+    "seconds": 30,
+    "note": "30 per side"
    },
    {
-    "movements": [
-     {
-      "movement": "hamstring-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "hip-flexor-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "calf-stretch",
-      "seconds": 30,
-      "note": "per side"
-     },
-     {
-      "movement": "chest-stretch",
-      "seconds": 30,
-      "note": "per side"
-     }
-    ]
+    "movement": "hip-flexor-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "calf-stretch",
+    "seconds": 30,
+    "note": "30 per side"
+   },
+   {
+    "movement": "chest-stretch",
+    "seconds": 30,
+    "note": "30 in a doorway"
    }
   ],
   "id": "l1-r12"
